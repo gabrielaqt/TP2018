@@ -1,0 +1,71 @@
+.divBarraLogo{
+    background-color: #696969;     
+    }
+
+.clear{    
+    clear: both;    
+}
+    
+a:link.links {
+    color: white;
+}
+a:visited.links {
+    color: #FFC107;
+}
+a:hover.links {
+    color: #FFC107;
+}
+    
+    
+    
+    /* selected link */
+    
+    a:active.links {
+    
+    color: yellow;
+    
+    } 
+    
+    
+    
+    .margem{
+    
+    margin-left: 10%;
+    
+    margin-right: 10%;
+    
+    }
+   
+  
+    
+    
+    
+    .margemEnviar{
+    
+    margin-left: 39%;
+    
+    }
+    
+    
+    
+    .color{
+    
+    background-color: #a5a5a5;
+    
+    }
+    
+    
+    
+    .margemCamposCadastro{
+    
+    margin-right: 5%;
+    
+    }
+    
+    
+    
+    .margemCadastroBotao{
+    
+    margin-left: 40%;
+    
+    }

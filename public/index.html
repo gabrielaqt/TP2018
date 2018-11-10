@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+
+
+<head>
+
+    <!-- Meta tags Obrigatórias -->
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+    <script type="text/javascript" src="javascripts/bootstrap.js"></script>
+
+
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+
+
+
+    <title>Race Motors</title>
+    <script>
+
+    </script>
+
+
+</head>
+
+
+
+<body>
+
+    <div class="container-fluid ">
+
+
+
+        <h6 class="text-center">Bem vindo ao Race Motors</h6>
+
+    </div>
+
+
+
+    <div class="container-fluid sticky-top divBarraLogo d-block">
+
+
+
+        <div class="img-fluid rounded float-left">
+
+            <a href="index.html">
+
+                <img src="img/logoHome2.png" width="285px">
+
+            </a>
+
+        </div>
+
+
+
+        <div class="float-right pt-4 dropdown">
+
+            <div class="img-fluid rounded float-right">
+
+
+
+                <button class="dropdown-toggle btn btn-warning float-left d-none d-sm-block" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+
+                    <div class="float-left">
+
+                        <img src="img/imagemLogin.png" width="25px"> Minha Conta
+
+                    </div>
+
+                </button>
+
+
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                    <!-- colocar as opcoes desse botao-->
+
+                </div>
+
+
+                <button class="btn btn-warning dropdown-toggle float-right ml-1 d-none d-sm-block" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                    <div class="float-left ">
+
+                        <img src="img/logoCarrinhoCompra.png" width="25px"> Minha Compra
+
+                    </div>
+
+                </button>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                    <!-- colocar as opcoes desse botao-->
+
+                </div>
+
+
+
+
+
+                <div class="clear">
+
+                </div>
+
+
+
+                <div class="float-left mr-4 d-none d-sm-block">
+
+                    <a class="links" href="login.html">Login</a>
+
+                </div>
+
+                <div class="d-none d-sm-block">
+
+                    <a class="links" href="cadastrar.html">Cadastrar</a>
+                    <div class="ml-4 float-right invisible">
+                        <input  type="button" id="logout" value="logout"> Logout </input>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+
+
+
+
+    <!-- Menu Lateral-->
+
+
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+
+        <a class="navbar-brand" href="index.html">Home</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
+            aria-expanded="false" aria-label="Alterna navegação">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item ">
+
+                    <a class="nav-link text-white" href="produtos.html">Motos
+                        <span class="sr-only">(página atual)</span>
+                    </a>
+
+                </li>
+
+                <li class="nav-item ">
+
+                    <a class="nav-link text-white" href="produtos.html">Caminhões</a>
+
+                </li>
+
+                <li class="nav-item dropdown ">
+
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"> Carros</a>
+
+                    <div class="dropdown-menu bg-secondary " aria-labelledby="navbarDropdown">
+
+                        <a class="dropdown-item text-white bg-dark" href="produtos.html">Nacionais</a>
+
+                        <a class="dropdown-item text-white bg-dark" href="produtos.html">Brasileiros</a>
+
+                        <a class="dropdown-item text-white bg-dark" href="produtos.html">Hotwheels</a>
+
+                    </div>
+
+                </li>
+
+                <li class="nav-item d-block d-sm-none">
+
+                    <a class="nav-link text-white" href="login.html">Login</a>
+
+                    <a class="nav-link text-white" href="cadastrar.html">Cadastrar</a>
+
+
+
+                </li>
+
+
+
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+
+                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+
+                <button class="btn btn-outline-success my-2 my-sm-0 text-warning border-warning" type="submit">Pesquisar</button>
+
+            </form>
+
+        </div>
+
+    </nav>
+
+    <!-- Menu Lateral-->
+
+
+
+
+
+    <div id="carouselExampleIndicators" class="carousel slide  rounded mx-auto p-2 d-flex justify-content-around  d-none d-xl-bloco col-md-12 offset-md-3 "
+        data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="https://thumbs.dreamstime.com/z/bandeira-horizontal-de-cloudscape-42147785.jpg" alt="Primeiro Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://img.elo7.com.br/product/zoom/FBCE34/adesivo-paisagem-praia-decorando-com-adesivos.jpg"
+                    alt="Segundo Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://img.elo7.com.br/product/zoom/FBCE34/adesivo-paisagem-praia-decorando-com-adesivos.jpg"
+                    alt="Terceiro Slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+
+
+    <!-- PRODUTOS PARA COMPRAR-->
+    <div class="col-12 col-sm-9">
+
+        <div class="tab-content" id="v-pills-tabContent">
+
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+                <br>DESTAQUES
+
+                <br>
+
+                <br>
+
+                <div class="row mb-4">
+
+                    <div class="col-sm-4 col-12">
+
+                        <div class="card" style="width: 18rem;">
+
+                            <img class="card-img-top" src="IMAGEM.png" alt="Imagem de capa do card">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">HOME</h5>
+
+                                <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do
+                                    card.
+
+                                </p>
+
+                                <a href="#" class="btn btn-primary">Visualizar</a>
+
+                                <a href="#" class="btn btn-primary">Comprar</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="card" style="width: 18rem;">
+
+                            <img class="card-img-top" src="IMAGEM.png" alt="Imagem de capa do card">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">HOME</h5>
+
+                                <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do
+                                    card.
+
+                                </p>
+
+                                <a href="#" class="btn btn-primary">Visualizar</a>
+
+                                <a href="#" class="btn btn-primary">Comprar</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="card" style="width: 18rem;">
+
+                            <img class="card-img-top" src="IMAGEM.png" alt="Imagem de capa do card">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">HOME</h5>
+
+                                <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do
+                                    card.
+
+                                </p>
+
+                                <a href="#" class="btn btn-primary">Visualizar</a>
+
+                                <a href="#" class="btn btn-primary">Comprar</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row mb-4">
+
+                    <div class="col-sm-4">
+
+                        <div class="card" style="width: 18rem;">
+
+                            <img class="card-img-top" src="IMAGEM.png" alt="Imagem de capa do card">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">HOME</h5>
+
+                                <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do
+                                    card.
+
+                                </p>
+
+                                <a href="#" class="btn btn-primary">Visualizar</a>
+
+                                <a href="#" class="btn btn-primary">Comprar</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="card" style="width: 18rem;">
+
+                            <img class="card-img-top" src="IMAGEM.png" alt="Imagem de capa do card">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">HOME</h5>
+
+                                <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do
+                                    card.
+
+                                </p>
+
+                                <a href="#" class="btn btn-primary">Visualizar</a>
+
+                                <a href="#" class="btn btn-primary">Comprar</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="card" style="width: 18rem;">
+
+                            <img class="card-img-top" src="IMAGEM.png" alt="Imagem de capa do card">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">HOME</h5>
+
+                                <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do
+                                    card.
+
+                                </p>
+
+                                <a href="#" class="btn btn-primary">Visualizar</a>
+
+                                <a href="#" class="btn btn-primary">Comprar</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row mb-4">
+
+                    <div class="col-sm-4">
+
+                        <div class="card" style="width: 18rem;">
+
+                            <img class="card-img-top" src="IMAGEM.png" alt="Imagem de capa do card">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">HOME</h5>
+
+                                <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do
+                                    card.
+
+                                </p>
+
+                                <a href="#" class="btn btn-primary">Visualizar</a>
+
+                                <a href="#" class="btn btn-primary">Comprar</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- PRODUTOS PARA COMPRAR-->
+
+
+
+            <div class="tab-pane fade" id="v-pills-Nacionais" role="tabpanel" aria-labelledby="v-pills-Nacionais-tab">
+
+                Nacionais
+
+                <nav aria-label="Navegação de página exemplo">
+
+                    <ul class="pagination">
+
+                        <li class="page-item">
+
+                            <a class="page-link" href="#">Anterior</a>
+
+                        </li>
+
+                        <li class="page-item">
+
+                            <a class="page-link" href="#pagina1">1</a>
+
+                        </li>
+
+                        <li class="page-item">
+
+                            <a class="page-link" href="#">2</a>
+
+                        </li>
+
+                        <li class="page-item">
+
+                            <a class="page-link" href="#">3</a>
+
+                        </li>
+
+                        <li class="page-item">
+
+                            <a class="page-link" href="#">Próximo</a>
+
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+    </div>
+
+
+
+    <!-- Fim Menu Lateral-->
+
+
+
+
+
+
+
+
+    <!-- JavaScript (Opcional) -->
+
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+
+
+
+</html>
