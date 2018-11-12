@@ -3,72 +3,89 @@
 
 <head>
     <!-- Meta tags Obrigatórias -->
+    <title>Formulário de Cliente</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="javascripts/cliente.js"></script>
     <meta charset="utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+  
+
+
 
     <title>Cadastro - Race Motors</title>
 </head>
 
 <body>
+
     <div class="container-fluid ">
+
         <h6 class="text-center">Bem vindo ao Race Motors</h6>
+
     </div>
 
-    <div class="container-fluid  divBarraLogo d-block">
 
-        <div class="img-fluid rounded ">
+
+    <div class="container-fluid sticky-top divBarraLogo d-block">
+
+        <div class="img-fluid rounded">
+
             <a href="index.html">
-                <img src="img/logoHome2.png" width="285px"> </a>
+
+                <img src="img/logoHome2.png" width="285px">
+
+            </a>
 
         </div>
+
     </div>
-    <!-- código para formulário de cadastro de cliente -->
-    <div class="margemCadastro color col-md-8 offset-md-2 rounded border border-dark">
-        <form>
+    
+    <div class="rounded p-2 flex-grow-1 bd-highlight margemCadastro color mw-100">
+        <form name = "FormularioCadastro" method="post" action="">
             <div class="form-row col-10">
                 <div class="form-group col-8">
                     <label for="inputName">Nome Completo</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Nome Completo" required>
+                    <input type="text" class="form-control" name="inputName" placeholder="Nome Completo" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputCPF">CPF</label>
-                    <input type="text" class="form-control" id="inputCPF" placeholder="999.999.999-99" required>
+                    <input type="text" class="form-control" name="inputCPF" placeholder="999.999.999-99" required>
                 </div>
             </div>
             <div class="form-row col-8">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
-                    <input type="email" class="form-control" id="inputEmail4" placeholder="email@examplo.com">
+                    <input type="email" class="form-control" name="inputEmail4" placeholder="email@examplo.com">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Senha</label>
-                    <input type="password" class="form-control" id="inputPassword4" placeholder="Senha" required>
+                    <input type="password" class="form-control" name="inputPassword4" placeholder="Senha" required>
                 </div>
             </div>
             <div class="form-group col-10">
                 <label for="inputAddress">Endereço</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Lougadouro, número, complemento (sem vírgulas)" required>
+                <input type="text" class="form-control" name="inputAddress" placeholder="Lougadouro, número, complemento (sem vírgulas)" required>
             </div>
             <div class="form-group col-10">
                 <label for="inputAddress2">Endereço 2 (opcional)</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Lougadouro, número, complemento (sem vírgulas)">
+                <input type="text" class="form-control" name="inputAddress2" placeholder="Lougadouro, número, complemento (sem vírgulas)">
             </div>
             <div class="form-row col-12">
                 <div class="form-group col-xs-2 margemCamposCadastro">
                     <label for="inputCEP">CEP</label>
-                    <input type="text" class="form-control" id="inputCEP" placeholder="12345-678" required>
+                    <input type="text" class="form-control" name="inputCEP" placeholder="12345-678" required>
                 </div>
                 <div class="form-group col-xs-8 margemCamposCadastro">
                     <label for="inputCity">Cidade</label>
-                    <input type="text" class="form-control" id="inputCity" placeholder="Nome da cidade" required>
+                    <input type="text" class="form-control" name="inputCity" placeholder="Nome da cidade" required>
                 </div>
                 <div class="form-group col-xs-2">
                         <label for="inputEstado">Estado</label>
-                        <select id="inputEstado" class="form-control" required>
+                        <select name="inputEstado" class="form-control" required>
                             <option selected>Escolher...</option>
                             <option>AC</option>
                             <option>AL</option>
@@ -101,13 +118,24 @@
                 </div>
 
 
+
+
+
+            
+            <div class="margemCadastroBotao w-50 ">
+            <input type="button"  class="btn btn-warning" name="insere" value="Confirmar" onClick="salvaCliente();"/>
+            <input type="button"  class="btn btn-warning" value="Limpar" onclick="funcaoLimpa();"/>
             </div>
-            <div class="margemCadastroBotao">
-            <button type="submit" class="btn btn-warning">Confirmar</button>
-            <button type="submit" class="btn btn-warning">Limpar</button>
-            </div>
+        
         </form>
     </div>
+
+
+
+    
+
+
+
 </body>
 
 </html>
