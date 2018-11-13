@@ -53,6 +53,12 @@ app.use(
     database: 'sql10263390' //nome da base de dados (esquema)
   }, 'pool')
 );
+/*------------------------------------------
+acesso ao serviço de clientes
+-------------------------------------------*/
+var cliente = require('./routes/cliente');
+app.use('/cliente', cliente);
+//-------------------------------------------
 
 /*------------------------------------------
 ROTAS
@@ -60,13 +66,6 @@ ROTAS
 var acesso = require('./routes/acesso');
 app.use('/acesso', acesso);
 
-
-/*------------------------------------------
-acesso ao serviço de clientes
--------------------------------------------*/
-var cliente = require('./routes/cliente');
-app.use('/cliente', cliente);
-//-------------------------------------------
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

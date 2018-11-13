@@ -16,17 +16,9 @@ function loginUsuario() {
                 alert('Erro: ' + dados.data);
             }
             else {
-                if(input.login === 'admin@gmail.com')
-                {
                     alert(dados.data);
                     window.location.href = '/index.html';
                 }
-                else{
-                    alert(dados.data);
-                    window.location.href= '/index.html';
-                    
-                }
-            }
         }
     });
 }

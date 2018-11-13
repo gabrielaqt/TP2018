@@ -11,18 +11,19 @@
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
 
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-
+    <script type="text/javascript" src="javascripts/logado.js"></script>
     <script type="text/javascript" src="javascripts/bootstrap.js"></script>
 
 
 
     <!-- Bootstrap CSS -->
-
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
 
-
+    
 
     <title>Race Motors</title>
     <script>
@@ -67,26 +68,9 @@
             <div class="img-fluid rounded float-right">
 
 
+                <button type="button" class="btn btn-warning"><img src="img/imagemLogin.png" width="25px"> Minha Conta</button>
 
-                <button class="dropdown-toggle btn btn-warning float-left d-none d-sm-block" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-
-                    <div class="float-left">
-
-                        <img src="img/imagemLogin.png" width="25px"> Minha Conta
-
-                    </div>
-
-                </button>
-
-
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                    <!-- colocar as opcoes desse botao-->
-
-                </div>
-
+                                        
 
                 <button class="btn btn-warning dropdown-toggle float-right ml-1 d-none d-sm-block" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -115,18 +99,16 @@
 
 
 
-                <div class="float-left mr-4 d-none d-sm-block">
-
-                    <a class="links" href="login.html">Login</a>
+                <div class="float-left mr-4 d-none d-sm-block" id = "linkLogin" >
+                    
+                   
 
                 </div>
 
                 <div class="d-none d-sm-block">
 
-                    <a class="links" href="cadastrar.html">Cadastrar</a>
-                    <div class="ml-4 float-right invisible">
-                        <input  type="button" id="logout" value="logout"> Logout </input>
-                    </div>
+                    
+                    
                 </div>
 
 
@@ -200,13 +182,9 @@
 
                 </li>
 
-                <li class="nav-item d-block d-sm-none">
+                <li class="nav-item d-block d-sm-none" id = "bottonNavBar">
 
-                    <a class="nav-link text-white" href="login.html">Login</a>
-
-                    <a class="nav-link text-white" href="cadastrar.html">Cadastrar</a>
-
-
+                    
 
                 </li>
 
@@ -539,9 +517,7 @@
 
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
 
