@@ -20,10 +20,12 @@ function salvaCliente() {
         senha: form.inputPassword4.value,
         privilegio: 0,
         //| |   |   |   | UTIL PARA TABELA ENDEREÇO  |   |   |   |
-        endereço: form.inputAddress.value,
-        CEP: form.inputCEP.value,
+        rua: form.inputAddress.value,
         cidade: form.inputCity.value,
         estado: form.inputEstado.value,
+        cep: form.inputCEP.value
+      
+        
     };  
     
 $.ajax({
