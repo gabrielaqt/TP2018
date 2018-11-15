@@ -15,7 +15,7 @@ a:visited.links {
 a:hover.links {
     color: #FFC107;
 }
-    
+
     
     
     /* selected link */
@@ -61,11 +61,12 @@ a:hover.links {
     margin-right: 5%;
     
     }
-    
-    
-    
+
     .margemCadastroBotao{
     
-    margin-left: 40%;
+    margin-left: 30%;
     
+    }
+    .divMsgErroEfeito{
+        color: #FF0000;
     }

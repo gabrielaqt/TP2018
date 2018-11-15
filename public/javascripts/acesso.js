@@ -1,35 +1,61 @@
-function loginUsuario() {
-    var form = document.formLogin;
-    var input = {
-        login: form.login.value,
-        senha: form.senha.value
-    };
-    $.ajax({
-        url: '/acesso/login',
-        type: 'post',
-        data: input,
-        error: function (dados) {
-            alert('Erro: ' + dados.data);
-        },
-        success: function (dados) {
-            if (dados.status === 'ERRO') {
+function validaDados() {
+
+    var retornoMsgErroEmail;
+    var retornoMsgErroSenha;
+
+
+    if (document.formLogin.login.value == "") {
+
+        retornoMsgErroEmail = document.getElementById("mesgErroEmail");
+        retornoMsgErroEmail.innerHTML = "Email invalido";
+        return 0;
+    }
+
+    if (document.formLogin.senha.value == "") {
+
+
+        retornoMsgErroSenha = document.getElementById("mesgErroSenha");
+        retornoMsgErroSenha.innerHTML = "Senha invalido";
+        return 0;
+    }
+
+
+    (function () {
+        var form = document.formLogin;
+        var input = {
+            login: form.login.value,
+            senha: form.senha.value
+        };
+        $.ajax({
+            url: '/acesso/login',
+            type: 'post',
+            data: input,
+            error: function (dados) {
                 alert('Erro: ' + dados.data);
-            }
-            else {
-                if(input.login === 'admin@gmail.com')
-                {
+            },
+            success: function (dados) {
+                if (dados.status === 'ERRO') {
+                    alert('Erro: ' + dados.data);
+                }
+                else {
                     alert(dados.data);
                     window.location.href = '/index.html';
                 }
-                else{
-                    alert(dados.data);
-                    window.location.href= '/index.html';
-                    
-                }
             }
-        }
-    });
+        });
+    }
+    )();
+
+
+
+
+
 }
+
+
+
+
+
 
 function logoutUsuario() {
     $.ajax({
@@ -40,7 +66,7 @@ function logoutUsuario() {
         },
         success: function (dados) {
             if (dados.status === 'ERRO')
-    alert('Erro: ' + dados.data);
+                alert('Erro: ' + dados.data);
             else {
                 alert(dados.data);
                 window.location.href = '/login.html';

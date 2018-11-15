@@ -3,32 +3,57 @@ var router = express.Router();
 
 
 router.post('/insere', function (req, res, next) {
-    var inputRecebe = req.body;
-    console.log(inputRecebe);
-    var inputCliente = {inputRecebe.nome, input};
+    var input = req.body;
+    var inputCliente = 
+    {
+        nome: input.nome, 
+        CPF: input.CPF,
+        email: input.email,
+        senha: input.senha,
+        privilegio: input.privilegio
+    };
     
-    console.log(inputCliente);
-    console.log(inputEndereco);
     req.getConnection(function (err, connection) {
         var query = connection.query("INSERT INTO Cliente SET ? ", inputCliente, function (err, rows) {
-            if (err)
+            if (err){
                 res.json({ status: 'ERRO', data: + err });
+            }
             else {
-                var inputEndereco = {
-                    id: rows.idCliente,
-                    inputRecebe.input1
-                };
-                console.log("entrou no else");
-                query = connection.query("INSERT INTO Cliente_has_endereço SET ? " , inputEndereco, function (err, rows) {
+                var inputEndereco =
+                {
+                    rua: input.rua,
+                    cep: input.cep,
+                    cidade: input.cidade,
+                    estado: input.estado
+               };
+               
+                var idClienteRetorno = rows.insertId;
+                query = connection.query("INSERT INTO endereco SET ? " , inputEndereco, function (err, rows) {
+                    
                         if (err) {
                             res.json({ status: 'ERRO', data: + err });
 
                         }
-                        else
-                            res.json({ status: 'OK', data: 'Endereco incluido com sucesso!' });
+                        else{
+                            var idEnderecoRetorno = rows.insertId;
+                            var inputClienteEnderecoId = {
+                                idCliente: idClienteRetorno,
+                                idEndereco: idEnderecoRetorno
+                            }
+                            query = connection.query("INSERT INTO cliente_has_endereco SET ? ", inputClienteEnderecoId, function (err, rows){
+                                if(err){
+                                    res.json({status: 'ERRO', data: + err});
+                                }
+                                else{
+                                    res.json({ status: 'OK', data: 'Cadastro incluido com sucesso!' });
+                                }
+                            })
+                            
+                        }
+
                     });
 
-                res.json({ status: 'OK', data: 'Incluído com sucesso!' });
+                //res.json({ status: 'OK', data: 'Incluído com sucesso!' });
 
             }
         });
