@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var idGlobal;
+
 router.get('/logado', function (req, res, next){
     if(req.session.logadoAdmin)
     {
@@ -31,7 +33,9 @@ router.post('/login', function (req, res, next) {
                     });
                 }
                 else {
-                    connection.query("SELECT privilegio FROM Cliente WHERE email = ?", [input.login], function (err, rows) {
+                    connection.query("SELECT privilegio, idCliente FROM Cliente WHERE email = ?", [input.login], function (err, rows) {
+                      
+                        req.session.idCliente = rows[0].idCliente;
                         if (rows[0].privilegio === 0) {
                             console.log("entrou no if do cliente");
                             req.session.logadoCliente = true;
@@ -61,6 +65,27 @@ router.post('/logout', function (req, res, next) {
             res.json({ status: 'ERRO', data: + err });
         else
             res.json({ status: 'OK', data: 'Logout com sucesso!' });
+    });
+});
+
+
+
+router.get('/lista', function (req, res, next) {
+    var input = req.session.idCliente;
+    console.log("Aqui entrou");
+    console.log(req.session.idCliente);
+    req.getConnection(function (err, connection) {
+        connection.query('SELECT nome,CPF,email,senha FROM Cliente WHERE idCliente = ?',[input], function (err, rows) {
+            console.log(rows[0].nome);
+            console.log(rows[0].CPF);
+            console.log(rows[0].email);
+            console.log(rows[0].senha);
+            if (err)
+                res.json({ status: 'ERRO', data: err });
+            res.json({ status: 'OK', data: rows });
+        });
+        if (err)
+            res.json({ status: 'ERRO', data: err });
     });
 });
 

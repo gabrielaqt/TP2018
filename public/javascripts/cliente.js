@@ -199,3 +199,32 @@ $.ajax({
 }
 
 
+$(document).ready(function () {
+    $.ajax({
+        url: '/acesso/lista',
+        dataType: 'json',
+        error: function (dados) {
+            alert('Erro: ' + dados.data);
+        },
+        success: function (dados) {
+            if (dados.status === 'ERRO')
+                alert('Erro: ' + dados.data);
+            else
+             {  console.log(dados.data);
+                  exibeClientes(dados.data);
+
+             }
+        }
+    });
+});
+
+function exibeClientes(cliente) {
+        console.log(cliente);
+        var dadosCliente = 'Nome: ' + cliente[0].nome +
+            '<br>CPF: ' + cliente[0].CPF +
+            '<br>Email: ' + cliente[0].email +
+            '<br>Senha: ' + cliente[0].senha;
+            
+        document.getElementById('result').innerHTML += dadosCliente + '<br><br>';
+    
+}
