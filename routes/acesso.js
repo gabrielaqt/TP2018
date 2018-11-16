@@ -89,5 +89,36 @@ router.get('/lista', function (req, res, next) {
     });
 });
 
+router.get('/listaEndereco', function (req, res, next) {
+    var input = req.session.idCliente;
+    console.log("Entrou Lista Endereco");
+    console.log(req.session.idCliente);
+    req.getConnection(function (err, connection) {
+
+        connection.query('SELECT idEndereco FROM cliente_has_endereco WHERE idCliente = ?',[input], function (err, rows) {
+            console.log(rows[0].idEndereco);
+            var retornoIdEndereco = rows[0].idEndereco;
+            if (err)
+             {   res.json({ status: 'ERRO', data: err });
+            }
+            else{
+
+                query = connection.query('SELECT rua,cidade,estado,cep FROM endereco WHERE idEndereco = ?', retornoIdEndereco, function (err, rows){
+                    if(err){
+                        res.json({status: 'ERRO', data: + err});
+                    }
+                    else{
+                        res.json({ status: 'OK', data: rows });
+                    }
+                })
+
+               
+             }
+        });
+        if (err)
+            res.json({ status: 'ERRO', data: err });
+    });
+});
+
 
 module.exports = router;

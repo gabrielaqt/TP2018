@@ -228,3 +228,31 @@ function exibeClientes(cliente) {
         document.getElementById('result').innerHTML += dadosCliente + '<br><br>';
     
 }
+$(document).ready(function () {
+    $.ajax({
+        url: '/acesso/listaEndereco',
+        dataType: 'json',
+        error: function (dados) {
+            alert('Erro: ' + dados.data);
+        },
+        success: function (dados) {
+            if (dados.status === 'ERRO')
+                alert('Erro: ' + dados.data);
+            else
+             {  console.log(dados.data);
+                exibeEndereco(dados.data);
+
+             }
+        }
+    });
+});
+function exibeEndereco(enderecoCliente) {
+    console.log(enderecoCliente);
+    var dadosEndereco= 'Rua: ' + enderecoCliente[0].rua +
+        '<br>Cidade: ' + enderecoCliente[0].cidade +
+        '<br>Estado: ' + enderecoCliente[0].estado +
+        '<br>CEP: ' + enderecoCliente[0].cep;
+        
+    document.getElementById('resultEndereco').innerHTML += dadosEndereco + '<br><br>';
+
+}
