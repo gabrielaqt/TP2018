@@ -1,3 +1,33 @@
+$(document).ready(function(){
+    $.ajax({
+        url: '/produto/lista',
+        dataType: 'json',
+        error: function (dados) {
+            alert('Erro: 333 ' + dados.data);
+        },
+        success: function (dados) {
+            if (dados.status === 'ERRO')
+                alert('Erro 111: ' + dados.data);
+            else{
+                exibeProdutos(dados.data);
+            }
+        }
+    });
+});
+
+function exibeProdutos(produtos){
+    
+    console.log(produtos.dadosProdutos.produtos[2].marca);
+    var j = 2;
+    for (var i = 0; i < 3; i++){
+        var novoProduto = document.createElement('div');
+        novoProduto.innerHTML = '<div class="card ml-5 bg-white border-secondary" style="width: 18rem;><div class="card-body"><img class="card-img-top" src= img/'+produtos.dadosImagem.imagem[i].imagens_linkImagem+' alt="Imagem de capa do card"><h5 class="card-title text-dark"></h5><p class="card-text text-dark">Nome: '+produtos.dadosProdutos.produtos[j].nomeProduto+' <br> Marca: '+produtos.dadosProdutos.produtos[j].marca+' <br> Preço: R$ '+produtos.dadosProdutos.produtos[j].preco+' <br> Escala: '+produtos.dadosProdutos.produtos[j].escala+' </p><a href="#" class="btn btn-dark text-light">Visitar</a></div></div>'   
+        produtosHome.appendChild(novoProduto);
+        j--;
+    }
+
+}
+
 $(document).ready(function () {
     $.ajax({
         url: '/acesso/logado',

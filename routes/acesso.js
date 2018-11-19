@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var idGlobal;
 
 router.get('/logado', function (req, res, next){
     if(req.session.logadoAdmin)
@@ -17,7 +16,7 @@ router.get('/logado', function (req, res, next){
             res.json({status: 'SemAcesso', data: 'Usuário precisa estar logado!'});
         }
     }
-})
+});
 router.post('/login', function (req, res, next) {
     var input = req.body;
     req.getConnection(function (err, connection) {

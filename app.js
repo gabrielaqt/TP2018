@@ -66,6 +66,8 @@ ROTAS
 var acesso = require('./routes/acesso');
 app.use('/acesso', acesso);
 
+var produto = require('./routes/produto');
+app.use('/produto', produto);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

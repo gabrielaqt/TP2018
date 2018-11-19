@@ -131,9 +131,7 @@ function validaDadosCadastro(){
             rua: form.inputAddress.value,
             cidade: form.inputCity.value,
             estado: form.inputEstado.value,
-            cep: form.inputCEP.value
-          
-            
+            cep: form.inputCEP.value   
         };  
         
     $.ajax({
@@ -156,7 +154,7 @@ function validaDadosCadastro(){
     
     
     
-    })();
+    });
 
 
 
