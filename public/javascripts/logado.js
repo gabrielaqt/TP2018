@@ -39,13 +39,13 @@ $(document).ready(function () {
         success: function (dados) {
             if (dados.status === 'LogadoCliente' || dados.status === 'LogadoAdmin') {
                 var botaoNavBar = document.getElementById("bottonNavBar");
-                var botaoCompra = document.getElementById("MinhaContaDropdown");
-                var botaoCarrinho = document.getElementById("MinhaCompraDropdown");
+                var botaoConta = document.getElementById("bottonNavBarMinhaConta");
+                var botaoCarrinho = document.getElementById("bottonNavBarMinhaCompra");
                 var linkLogin = document.getElementById("linkLogin");
                 linkLogin.innerHTML = '<a class="links" href="#" onClick="deslogado();">Logout</a>'
                 botaoNavBar.innerHTML = '<a class="nav-link text-white" onClick="deslogado();" href="#" >Logout </a>'
-                
-
+                botaoConta.innerHTML = '<a class="nav-link text-white" href="dadosCliente.html" >Minha Conta </a>'
+                botaoCarrinho.innerHTML = '<a class="nav-link text-white" href="#" >Minha Compra </a>'
                 //CLIENTE --> insere opções no Dropdown
                 if(dados.status === 'LogadoCliente' ){
                 var minhaContaDrop = document.getElementById("MinhaContaDropdown");
