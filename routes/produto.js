@@ -90,4 +90,27 @@ router.get('/lista', function (req, res, next) {
 
 
 
+router.get('/especifico', function (req, res, next) {
+    var cat = req.query.categoria;
+    var marca1 = req.query.marca;
+    console.log("ROTAS");
+    console.log(cat);
+    console.log(marca1);
+    req.getConnection(function (err, connection) {
+        connection.query('SELECT * FROM produtos, imagens_has_produtos WHERE categoria = ? AND marca = ? AND id_produto = produtos_id_produto', [cat, marca1],function (err, rows) {
+            if (err){
+                console.log(err);
+                res.json({ status: 'ERRO', data: err });
+            }
+            else{
+                console.log(rows);
+                res.json({ status: 'OK', data: rows });
+            }   
+        });
+    });
+});
+
+
+
+
 module.exports = router;

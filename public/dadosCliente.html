@@ -20,46 +20,70 @@
 
 
 
-
-
-</head>
-
-
-
-<body>
-    <div class="container-fluid ">
-
-        <h6 class="text-center">Bem vindo ao Race Motors</h6>
-
-    </div>
-
-
-
-    <div class="container-fluid sticky-top divBarraLogo d-block">
-
-        <div class="img-fluid rounded">
-
-            <a href="index.html">
-
-                <img src="img/logoHome2.png" width="285px">
-
-            </a>
-
+    <script>
+    
+        $(document).ready(function () {
+                $.ajax({
+                    url: '/acesso/lista',
+                    dataType: 'json',
+                    error: function (dados) {
+                        alert('Erro: ' + dados.data);
+                    },
+                    success: function (dados) {
+                        if (dados.status === 'ERRO'){
+                            alert('Erro: ' + dados.data);
+                        } 
+                        else{
+                           
+                                exibeDados(dados.data);
+                            
+                        }
+                            
+                    }
+                });
+            });
+        
+        </script>
+    
+    
+    </head>
+    
+    
+    
+    <body>
+        <div class="container-fluid ">
+    
+            <h6 class="text-center">Bem vindo ao Race Motors</h6>
+    
         </div>
-
-    </div>
     
-  
-
-    <div id="result"></div>
-    <div id="resultEndereco"></div>
-
     
-
-
-
-</body>
-
-
-
-</html>
+    
+        <div class="container-fluid sticky-top divBarraLogo d-block">
+    
+            <div class="img-fluid rounded">
+    
+                <a href="index.html">
+    
+                    <img src="img/logoHome2.png" width="285px">
+    
+                </a>
+    
+            </div>
+    
+        </div>
+        
+      
+    
+        <div class= "rounded margemCadastro mx-auto w-50 color text-center margemExibe"id="result"></div>
+    
+    
+        
+    
+    
+    
+    </body>
+    
+    
+    
+    </html>

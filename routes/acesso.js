@@ -74,48 +74,127 @@ router.get('/lista', function (req, res, next) {
     console.log("Aqui entrou");
     console.log(req.session.idCliente);
     req.getConnection(function (err, connection) {
-        connection.query('SELECT nome,CPF,email,senha FROM Cliente WHERE idCliente = ?',[input], function (err, rows) {
+        connection.query('SELECT idCliente,nome,CPF,email,senha FROM Cliente WHERE idCliente = ?',[input], function (err, rows) {
             console.log(rows[0].nome);
             console.log(rows[0].CPF);
             console.log(rows[0].email);
             console.log(rows[0].senha);
             if (err)
                 res.json({ status: 'ERRO', data: err });
-            res.json({ status: 'OK', data: rows });
+            else{
+                var dadosPessoais = {
+                    dadosP: rows
+                }
+            console.log("AQUUIIIIIIIIIII");
+                console.log(rows);
+               
+
+
+                connection.query('SELECT idEndereco FROM cliente_has_endereco WHERE idCliente = ?',[input], function (err, rows) {
+                    console.log("ENDERECO");
+                    console.log(rows[0].idEndereco);
+                    var retornoIdEndereco = rows[0].idEndereco;
+                    if (err)
+                     {   res.json({ status: 'ERRO', data: err });
+                    }
+                    else{
+        
+                        query = connection.query('SELECT rua,cidade,estado,cep FROM endereco WHERE idEndereco = ?', [retornoIdEndereco], function (err, rows){
+                            if(err){
+                                res.json({status: 'ERRO', data: + err});
+                            }
+                            else{
+                                var dadosEndereco ={
+                                    dadosE: rows
+                                }
+                                var dadosFinais ={
+                                    dadosFinaisPessoais: dadosPessoais,
+                                    dadosFinaisEndereco: dadosEndereco
+                                }
+                                console.log("DADOS FINAIS");
+                                console.log(dadosFinais);
+                                res.json({ status: 'OK', data: dadosFinais });
+                            }
+                        })
+        
+                       
+                     }
+                });
+
+
+
+
+
+
+
+        }
         });
         if (err)
             res.json({ status: 'ERRO', data: err });
     });
 });
 
-router.get('/listaEndereco', function (req, res, next) {
-    var input = req.session.idCliente;
-    console.log("Entrou Lista Endereco");
-    console.log(req.session.idCliente);
+router.post('/altera', function (req, res, next) {
+    
+    var input = req.body;
+    console.log("INPUT/ID/CPF:");
+    console.log(input);
+    console.log(req.query.id);
+    console.log(input.CPF);
+    var id = req.query.id;
+    var inputCliente = 
+    {
+        nome: input.nome, 
+        CPF: input.CPF,
+        email: input.email,
+        senha: input.senha
+    };
+    console.log("CPF ANTES DO INPUT:");
+    console.log(inputCliente.CPF);
+ 
     req.getConnection(function (err, connection) {
-
-        connection.query('SELECT idEndereco FROM cliente_has_endereco WHERE idCliente = ?',[input], function (err, rows) {
-            console.log(rows[0].idEndereco);
-            var retornoIdEndereco = rows[0].idEndereco;
+        connection.query("UPDATE Cliente set ? WHERE idCliente = ? ", [inputCliente, id], function (err, rows) {
             if (err)
-             {   res.json({ status: 'ERRO', data: err });
-            }
+                res.json({ status: 'ERRO', data: + err });
             else{
-
-                query = connection.query('SELECT rua,cidade,estado,cep FROM endereco WHERE idEndereco = ?', retornoIdEndereco, function (err, rows){
-                    if(err){
-                        res.json({status: 'ERRO', data: + err});
+                connection.query('SELECT idEndereco FROM cliente_has_endereco WHERE idCliente = ?',[id], function (err, rows) {
+                    console.log("Endereco:");
+                    console.log(rows[0].idEndereco);
+                    var retornoIdEndereco = rows[0].idEndereco;
+                    if (err)
+                     {   res.json({ status: 'ERRO', data: err });
                     }
                     else{
-                        res.json({ status: 'OK', data: rows });
-                    }
-                })
+                        var inputEndereco =
+                        {
+                            rua: input.rua,
+                            cidade: input.cidade,
+                            estado: input.estado,
+                            cep: input.cep
+                       };
+        
+                        query = connection.query("UPDATE endereco set ? WHERE idEndereco = ? ",[inputEndereco, retornoIdEndereco], function (err, rows){
+                            if(err){
+                                res.json({status: 'ERRO', data: + err});
+                            }
+                            else{
+                                res.json({ status: 'OK', data: 'Alterado com sucesso!' });
+                            }
+                        })
+        
+                       
+                     }
+                });
 
-               
-             }
+
+
+
+
+
+
+            }
+                
         });
-        if (err)
-            res.json({ status: 'ERRO', data: err });
     });
 });
 

@@ -4,6 +4,7 @@ var router = express.Router();
 
 router.post('/insere', function (req, res, next) {
     var input = req.body;
+
     var inputCliente = 
     {
         nome: input.nome, 
@@ -59,7 +60,6 @@ router.post('/insere', function (req, res, next) {
         });
     });
 });
-
 
 
 

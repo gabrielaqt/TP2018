@@ -17,11 +17,12 @@ $(document).ready(function(){
 
 function exibeProdutos(produtos){
     
-    console.log(produtos.dadosProdutos.produtos[2].marca);
     var j = 2;
     for (var i = 0; i < 3; i++){
         var novoProduto = document.createElement('div');
-        novoProduto.innerHTML = '<div class="card ml-5 bg-white border-secondary" style="width: 18rem;><div class="card-body"><img class="card-img-top" src= img/'+produtos.dadosImagem.imagem[i].imagens_linkImagem+' alt="Imagem de capa do card"><h5 class="card-title text-dark"></h5><p class="card-text text-dark">Nome: '+produtos.dadosProdutos.produtos[j].nomeProduto+' <br> Marca: '+produtos.dadosProdutos.produtos[j].marca+' <br> Preço: R$ '+produtos.dadosProdutos.produtos[j].preco+' <br> Escala: '+produtos.dadosProdutos.produtos[j].escala+' </p><a href="#" class="btn btn-dark text-light">Visitar</a></div></div>'   
+        novoProduto.classList.add("col-md-4");
+        novoProduto.classList.add("col-12");
+        novoProduto.innerHTML = '<div class="card bg-white border-secondary" ><div class="card-body"><img class="card-img-top" src= img/'+produtos.dadosImagem.imagem[i].imagens_linkImagem+' alt="Imagem de capa do card"><h5 class="card-title text-dark"></h5><p class="card-text text-dark">Nome: '+produtos.dadosProdutos.produtos[j].nomeProduto+' <br> Marca: '+produtos.dadosProdutos.produtos[j].marca+' <br> Preço: R$ '+produtos.dadosProdutos.produtos[j].preco+' <br> Escala: '+produtos.dadosProdutos.produtos[j].escala+' </p><a href="#" class="btn btn-dark text-light">Visitar</a></div></div>'   
         produtosHome.appendChild(novoProduto);
         j--;
     }
@@ -38,9 +39,12 @@ $(document).ready(function () {
         success: function (dados) {
             if (dados.status === 'LogadoCliente' || dados.status === 'LogadoAdmin') {
                 var botaoNavBar = document.getElementById("bottonNavBar");
+                var botaoCompra = document.getElementById("MinhaContaDropdown");
+                var botaoCarrinho = document.getElementById("MinhaCompraDropdown");
                 var linkLogin = document.getElementById("linkLogin");
                 linkLogin.innerHTML = '<a class="links" href="#" onClick="deslogado();">Logout</a>'
                 botaoNavBar.innerHTML = '<a class="nav-link text-white" onClick="deslogado();" href="#" >Logout </a>'
+                
 
                 //CLIENTE --> insere opções no Dropdown
                 if(dados.status === 'LogadoCliente' ){
@@ -95,5 +99,6 @@ function deslogado(){
             }
             
         }
-    })
+    });
 }
+

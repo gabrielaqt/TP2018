@@ -39,14 +39,23 @@ a:hover.links {
   
     
     
-    
+    .fundoCard{
+        background-color: #D8D8D8;
+    }
     .margemEnviar{
     
     margin-left: 39%;
     
     }
     
-    
+    .largura-fotos-produtos{
+        width: 20%;
+
+    }
+    .margemExibe{
+        margin-top: 10px;
+        width: 50%;
+    }
     
     .color{
     
