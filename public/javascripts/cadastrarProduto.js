@@ -96,14 +96,12 @@ function validaCamposCadastroProdutos() {
                         alert('Erro: 2' + dados.data);
                     }
                     else {
-                        alert(dados.data);
                         window.location.href = '/cadastrarProduto.html';
                     }
                 }
             });
     }
     else{
-        console.log("não aceitou os dados");
         return 0;
     }
 }

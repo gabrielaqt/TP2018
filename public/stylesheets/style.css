@@ -41,6 +41,8 @@ a:hover.links {
     
     .fundoCard{
         background-color: #D8D8D8;
+        border-style: outset;
+        border-color: #D8D8D8;
     }
     .margemEnviar{
     

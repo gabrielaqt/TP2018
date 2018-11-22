@@ -125,8 +125,6 @@ function validaDadosCadastro(){
 
     (function () {
         var form = document.FormularioCadastro;
-        console.log("CPF SALVARRRRRR");
-        console.log(form.inputCPF.value);
         var input = {
             //| |   |   |   | UTIL PARA TABELA CLIENTE  |   |   |   |
             nome: form.inputName.value,
@@ -157,7 +155,6 @@ function validaDadosCadastro(){
         type: 'post',
         data: input,
         error: function (dados) {
-            console.log(dados.data);
             alert('Erro: 1' + dados.data);
         },
         success: function (dados) {
@@ -181,9 +178,7 @@ function validaDadosCadastro(){
 
 
 function exibeDados(cliente) {
-       
-        console.log("CPF: ");
-       console.log(cliente.dadosFinaisPessoais.dadosP[0].CPF);
+
         var dadosCliente = '<b>Nome:</b> ' + cliente.dadosFinaisPessoais.dadosP[0].nome +
             '<br><b>CPF</b>: ' + cliente.dadosFinaisPessoais.dadosP[0].CPF +
             '<br><b>Email</b>: ' + cliente.dadosFinaisPessoais.dadosP[0].email +
@@ -216,9 +211,7 @@ function alteraCliente() {
                 if (dados.status === 'ERRO')
                     alert('Erro: ' + dados.data);
                 else{
-                    console.log(dados.data);
                     var cliente = dados.data;
-                    console.log("AQUIIII ENTROU");
                     var form = document.FormularioCadastro;
 
 

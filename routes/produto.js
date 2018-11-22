@@ -17,7 +17,6 @@ router.post('/insere', function (req, res, next) {
                 res.json({ status: 'ERRO', data: + err });
             }
             else {
-                console.log("cadastrou o produto");
                 var inputImagem = {
                     linkImagem: input.imagem
                 };
@@ -27,7 +26,6 @@ router.post('/insere', function (req, res, next) {
                         res.json({ status: 'ERRO', data: + err });
                     }
                     else {
-                        console.log("cadastrou a imagem");
                         var inputImagemProduto = {
                             produtos_id_produto: idProdutoRetorno,
                             imagens_linkImagem: input.imagem
@@ -37,7 +35,6 @@ router.post('/insere', function (req, res, next) {
                                 res.json({ status: 'ERRO', data: + err });
                             }
                             else {
-                                console.log("cadastrou a imagem com produto");
                                 res.json({ status: 'OK', data: 'Cadastro incluido com sucesso!' });
                             }
                         });
@@ -59,7 +56,6 @@ router.get('/lista', function (req, res, next) {
                 var outPut = {
                     produtos: rows
                 };
-                console.log(outPut);
 
                 connection.query('SELECT imagens_linkImagem FROM imagens_has_produtos WHERE produtos_id_produto = ' + outPut.produtos[0].id_produto + ' OR produtos_id_produto = ' + outPut.produtos[1].id_produto + ' OR produtos_id_produto = ' + outPut.produtos[2].id_produto + ' ', function (err, rows) {
 
@@ -67,8 +63,6 @@ router.get('/lista', function (req, res, next) {
                         res.json({ status: 'ERRO', data: err });
                     }
                     else {
-                        console.log("Resposta da consulta SQL");
-                        console.log(rows);
                         var imagens = {
                             imagem: rows
                         };
@@ -77,7 +71,6 @@ router.get('/lista', function (req, res, next) {
                             dadosProdutos: outPut,
                             dadosImagem: imagens
                         }
-                        console.log(final);
                         res.json({ status: 'OK', data: final });
                     }
                 });
@@ -93,17 +86,12 @@ router.get('/lista', function (req, res, next) {
 router.get('/especifico', function (req, res, next) {
     var cat = req.query.categoria;
     var marca1 = req.query.marca;
-    console.log("ROTAS");
-    console.log(cat);
-    console.log(marca1);
     req.getConnection(function (err, connection) {
         connection.query('SELECT * FROM produtos, imagens_has_produtos WHERE categoria = ? AND marca = ? AND id_produto = produtos_id_produto', [cat, marca1],function (err, rows) {
             if (err){
-                console.log(err);
                 res.json({ status: 'ERRO', data: err });
             }
             else{
-                console.log(rows);
                 res.json({ status: 'OK', data: rows });
             }   
         });

@@ -21,6 +21,7 @@ function validaDados() {
 
 
     (function () {
+        var retornoMsgErro; 
         var form = document.formLogin;
         var input = {
             login: form.login.value,
@@ -35,10 +36,10 @@ function validaDados() {
             },
             success: function (dados) {
                 if (dados.status === 'ERRO') {
-                    alert('Erro: ' + dados.data);
+                    retornoMsgErro = document.getElementById("mesgErroSenha");
+                    retornoMsgErro.innerHTML = 'Dados incorretos!';
                 }
                 else {
-                    alert(dados.data);
                     window.location.href = '/index.html';
                 }
             }

@@ -22,7 +22,7 @@ function exibeProdutos(produtos){
         var novoProduto = document.createElement('div');
         novoProduto.classList.add("col-md-4");
         novoProduto.classList.add("col-12");
-        novoProduto.innerHTML = '<div class="card bg-white border-secondary" ><div class="card-body"><img class="card-img-top" src= img/'+produtos.dadosImagem.imagem[i].imagens_linkImagem+' alt="Imagem de capa do card"><h5 class="card-title text-dark"></h5><p class="card-text text-dark">Nome: '+produtos.dadosProdutos.produtos[j].nomeProduto+' <br> Marca: '+produtos.dadosProdutos.produtos[j].marca+' <br> Preço: R$ '+produtos.dadosProdutos.produtos[j].preco+' <br> Escala: '+produtos.dadosProdutos.produtos[j].escala+' </p><a href="#" class="btn btn-dark text-light">Visitar</a></div></div>'   
+        novoProduto.innerHTML = '<div class="card bg-white border-secondary" ><div class="card-body fundoCard"><img class="card-img-top" src= img/'+produtos.dadosImagem.imagem[i].imagens_linkImagem+' alt="Imagem de capa do card"><h5 class="card-title text-dark"></h5><p class="card-text text-dark">Nome: '+produtos.dadosProdutos.produtos[j].nomeProduto+' <br> Marca: '+produtos.dadosProdutos.produtos[j].marca+' <br> Preço: R$ '+produtos.dadosProdutos.produtos[j].preco+' <br> Escala: '+produtos.dadosProdutos.produtos[j].escala+' </p><a href="#" class="btn btn-dark text-light">Visitar</a></div></div>'   
         produtosHome.appendChild(novoProduto);
         j--;
     }
@@ -37,17 +37,19 @@ $(document).ready(function () {
             alert('Erro: ' + dados.data);
         },
         success: function (dados) {
-            if (dados.status === 'LogadoCliente' || dados.status === 'LogadoAdmin') {
+            if (dados.data.statusCliente === 'LogadoCliente' || dados.data.statusAdmin === 'LogadoAdmin') {
                 var botaoNavBar = document.getElementById("bottonNavBar");
                 var botaoConta = document.getElementById("bottonNavBarMinhaConta");
                 var botaoCarrinho = document.getElementById("bottonNavBarMinhaCompra");
                 var linkLogin = document.getElementById("linkLogin");
+                var nomeLogado = document.getElementById("welcome");
+                nomeLogado.innerHTML = '<h6> Bem vindo ao Race Motors '+dados.data.nomeCliente+'</h6>'
                 linkLogin.innerHTML = '<a class="links" href="#" onClick="deslogado();">Logout</a>'
                 botaoNavBar.innerHTML = '<a class="nav-link text-white" onClick="deslogado();" href="#" >Logout </a>'
                 botaoConta.innerHTML = '<a class="nav-link text-white" href="dadosCliente.html" >Minha Conta </a>'
                 botaoCarrinho.innerHTML = '<a class="nav-link text-white" href="#" >Minha Compra </a>'
                 //CLIENTE --> insere opções no Dropdown
-                if(dados.status === 'LogadoCliente' ){
+                if(dados.data.statusCliente === 'LogadoCliente' ){
                 var minhaContaDrop = document.getElementById("MinhaContaDropdown");
                 var minhaCompraDrop = document.getElementById("MinhaCompraDropdown");
                 
@@ -73,7 +75,8 @@ $(document).ready(function () {
             else {
                 var botaoNavBar = document.getElementById("bottonNavBar");
                 var linkLogin = document.getElementById("linkLogin");
-              
+                var nomeLogado = document.getElementById("welcome");
+                nomeLogado.innerHTML = '<h6> Bem vindo ao Race Motors </h6>'
                 linkLogin.innerHTML = '<a class="links" href="login.html">Login </a><a class="links" href="cadastrar.html"> Cadastrar</a>'
                 botaoNavBar.innerHTML = '<a class="nav-link text-white" href="login.html" >Login</a><a class="nav-link text-white" href="cadastrar.html" >Cadastrar</a>'
             }

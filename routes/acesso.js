@@ -5,12 +5,22 @@ var router = express.Router();
 router.get('/logado', function (req, res, next){
     if(req.session.logadoAdmin)
     {
-        res.json({status: 'LogadoAdmin', data: req.session.login});
+        var input = {
+            statusCliente: '',
+            nomeCliente: '',
+            statusAdmin: 'LogadoAdmin'
+        };
+
+        res.json({status: 'OK', data: input});
     }
     else{
         if(req.session.logadoCliente)
         {
-            res.json({status: 'LogadoCliente', data: req.session.login});
+            var input = {
+                statusCliente: 'LogadoCliente',
+                nomeCliente: req.session.nomeCliente
+            }
+            res.json({status: 'OK', data: input});
         }
         else{
             res.json({status: 'SemAcesso', data: 'Usuário precisa estar logado!'});
@@ -32,11 +42,10 @@ router.post('/login', function (req, res, next) {
                     });
                 }
                 else {
-                    connection.query("SELECT privilegio, idCliente FROM Cliente WHERE email = ?", [input.login], function (err, rows) {
-                      
+                    connection.query("SELECT privilegio, idCliente, nome FROM Cliente WHERE email = ?", [input.login], function (err, rows) {
+                        req.session.nomeCliente = rows[0].nome;
                         req.session.idCliente = rows[0].idCliente;
                         if (rows[0].privilegio === 0) {
-                            console.log("entrou no if do cliente");
                             req.session.logadoCliente = true;
                             req.session.login = rows[0].login;
                             res.json({
@@ -44,7 +53,6 @@ router.post('/login', function (req, res, next) {
                             });
                         }
                         else{
-                            console.log("entrou no else do admin");
                             req.session.logadoAdmin = true;
                             req.session.login = rows[0].login;
                             res.json({
@@ -71,28 +79,15 @@ router.post('/logout', function (req, res, next) {
 
 router.get('/lista', function (req, res, next) {
     var input = req.session.idCliente;
-    console.log("Aqui entrou");
-    console.log(req.session.idCliente);
     req.getConnection(function (err, connection) {
         connection.query('SELECT idCliente,nome,CPF,email,senha FROM Cliente WHERE idCliente = ?',[input], function (err, rows) {
-            console.log(rows[0].nome);
-            console.log(rows[0].CPF);
-            console.log(rows[0].email);
-            console.log(rows[0].senha);
             if (err)
                 res.json({ status: 'ERRO', data: err });
             else{
                 var dadosPessoais = {
                     dadosP: rows
                 }
-            console.log("AQUUIIIIIIIIIII");
-                console.log(rows);
-               
-
-
                 connection.query('SELECT idEndereco FROM cliente_has_endereco WHERE idCliente = ?',[input], function (err, rows) {
-                    console.log("ENDERECO");
-                    console.log(rows[0].idEndereco);
                     var retornoIdEndereco = rows[0].idEndereco;
                     if (err)
                      {   res.json({ status: 'ERRO', data: err });
@@ -111,8 +106,6 @@ router.get('/lista', function (req, res, next) {
                                     dadosFinaisPessoais: dadosPessoais,
                                     dadosFinaisEndereco: dadosEndereco
                                 }
-                                console.log("DADOS FINAIS");
-                                console.log(dadosFinais);
                                 res.json({ status: 'OK', data: dadosFinais });
                             }
                         })
@@ -137,10 +130,6 @@ router.get('/lista', function (req, res, next) {
 router.post('/altera', function (req, res, next) {
     
     var input = req.body;
-    console.log("INPUT/ID/CPF:");
-    console.log(input);
-    console.log(req.query.id);
-    console.log(input.CPF);
     var id = req.query.id;
     var inputCliente = 
     {
@@ -149,17 +138,12 @@ router.post('/altera', function (req, res, next) {
         email: input.email,
         senha: input.senha
     };
-    console.log("CPF ANTES DO INPUT:");
-    console.log(inputCliente.CPF);
- 
     req.getConnection(function (err, connection) {
         connection.query("UPDATE Cliente set ? WHERE idCliente = ? ", [inputCliente, id], function (err, rows) {
             if (err)
                 res.json({ status: 'ERRO', data: + err });
             else{
                 connection.query('SELECT idEndereco FROM cliente_has_endereco WHERE idCliente = ?',[id], function (err, rows) {
-                    console.log("Endereco:");
-                    console.log(rows[0].idEndereco);
                     var retornoIdEndereco = rows[0].idEndereco;
                     if (err)
                      {   res.json({ status: 'ERRO', data: err });

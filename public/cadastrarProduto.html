@@ -38,7 +38,7 @@
             <img src="img/logoHome2.png" width="285px">
         </a>
     </div>
-    <div class="rounded p-2 flex-grow-1 bd-highlight  color mw-100">
+    <div class="rounded p-2 flex-grow-1 bd-highlight  color mw-100 d-block" id="form-cadastro">
         <form name="FormularioProduto" method="post" action="">
             <div class="form-row col-12 ">
                 <div class="form-group col-sm-5 offset-sm-2 col-md-6 offset-md-2">
@@ -81,9 +81,9 @@
                 
             </div>            
 
-            <div class="margemCadastroBotao offset-lg-5 w-50 ">
-                <input type="button" class="btn btn-warning " name="cadastrarProduct" value="Confirmar" onClick="validaCamposCadastroProdutos();" />
-                <input type="button" class="btn btn-warning" value="Limpar" onclick="funcaoLimpa();" />
+            <div class="margemCadastroBotao offset-lg-5 w-50 " id="success">
+                <input type="button" class="btn btn-warning " name="cadastrarProduct" value="Confirmar" id="confirmar"onClick="validaCamposCadastroProdutos();" />
+                <input type="button" class="btn btn-warning " value="Limpar" id="limpar" onclick="funcaoLimpa();" />
             </div>
 
         </form>
