@@ -61,12 +61,13 @@ $(document).ready(function () {
                     var botaoComprar = document.getElementById("botaoCompra");                   
                     var botaoConta = document.getElementById("botaoConta");
                     var adicionaProdutos = document.getElementById("botaoAdicionaProd");
+                    var excluiProdutos = document.getElementById("botaoExcluiProd");
 
 
                     botaoComprar.innerHTML = "";
                     botaoConta.innerHTML = "";
                     adicionaProdutos.innerHTML = ' <a  class="btn btn-warning float-right ml-1 d-none d-sm-block" href="cadastrarProduto.html"><div class="float-left"><img src="img/add.png" width="25px"> Adicionar Produtos</div></a>'
-
+                    excluiProdutos.innerHTML = ' <a  class="btn btn-warning float-right ml-1 d-none d-sm-block" href="gerenciamento.html"><div class="float-left"><img src="img/lixo.png" width="25"> Gerenciar Produtos</div></a>'
                 }
 
                 

@@ -1,6 +1,66 @@
 var express = require('express');
 var router = express.Router();
 
+router.post('/deleta', function (req, res, next) {
+    var id = req.query.id;
+    req.getConnection(function (err, connection) {
+        connection.query("SELECT imagens_linkImagem FROM imagens_has_produtos WHERE produtos_id_produto = " +id, function (err, rows) {
+            if (err){
+                console.log('SELECT DO IMAGEM', err);
+                res.json({ status: 'ERRO', data: + err });
+            }
+            else{
+                var input = {
+                    nomeImagem: rows[0].imagens_linkImagem
+                };
+                connection.query("DELETE FROM imagens_has_produtos WHERE produtos_id_produto = " +id, function (err, rows){
+                    if(err){
+                        console.log('DELETE DA CHAVE ESTRANGEIRA', err);
+                        res.json({status: 'ERRO', data: + err});
+                    }
+                    else{
+                        console.log("NOME DA IMAGEM QUE RETORNOU", input.nomeImagem);
+                        connection.query('DELETE FROM imagens WHERE linkImagem = ?', [input.nomeImagem], function (err, rows){
+                            if(err){
+                                console.log('DELETE DA IMAGEM', err);
+                                res.json({status: 'ERRO', data: + err});
+                            }
+                            else{
+                                connection.query("DELETE FROM produtos WHERE id_produto = " +id, function(err ,rows){
+                                    if(err)
+                                    {
+                                        console.log('DELETE DO PRODUTO', err);
+                                        res.json({status: 'ERRO', data: +err});
+                                    }
+                                    else{
+                                        res.json({status: 'OK', data: "Produto excluído com sucesso!"});
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+
+            }
+            
+        });
+    });
+});
+
+router.get('/pesquisa', function (req, res, next) {
+    req.getConnection(function (err, connection) {
+        connection.query("SELECT * FROM produtos ", function (err, rows) {
+            if (err)
+                res.json({ status: 'ERRO', data: + err });
+            res.json({ status: 'OK', data: rows });
+        });
+        if(err){
+            res.json({status: 'ERRO', data: err});
+        }
+    });
+});
+
+
 router.post('/insere', function (req, res, next) {
     var input = req.body;
     var inputProduto = {

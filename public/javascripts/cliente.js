@@ -40,10 +40,6 @@ function validaDadosCadastro(){
         retornoErroNome = document.getElementById("mesgErroNome");
         retornoErroNome.innerHTML= "";
     }
-    console.log("TAMANHO:");
-    console.log(retornoCpf.length);
-    console.log("CPF CADASTRO");
-    console.log(retornoCpf);
 
     if(retornoCpf == "" || isNaN(retornoCpf) ||  retornoCpf.length !== 11){
         retornoErroCpf = document.getElementById("mesgErroCpf");
