@@ -6,7 +6,6 @@ router.post('/deleta', function (req, res, next) {
     req.getConnection(function (err, connection) {
         connection.query("SELECT imagens_linkImagem FROM imagens_has_produtos WHERE produtos_id_produto = " +id, function (err, rows) {
             if (err){
-                console.log('SELECT DO IMAGEM', err);
                 res.json({ status: 'ERRO', data: + err });
             }
             else{
@@ -15,21 +14,17 @@ router.post('/deleta', function (req, res, next) {
                 };
                 connection.query("DELETE FROM imagens_has_produtos WHERE produtos_id_produto = " +id, function (err, rows){
                     if(err){
-                        console.log('DELETE DA CHAVE ESTRANGEIRA', err);
                         res.json({status: 'ERRO', data: + err});
                     }
                     else{
-                        console.log("NOME DA IMAGEM QUE RETORNOU", input.nomeImagem);
                         connection.query('DELETE FROM imagens WHERE linkImagem = ?', [input.nomeImagem], function (err, rows){
                             if(err){
-                                console.log('DELETE DA IMAGEM', err);
                                 res.json({status: 'ERRO', data: + err});
                             }
                             else{
                                 connection.query("DELETE FROM produtos WHERE id_produto = " +id, function(err ,rows){
                                     if(err)
                                     {
-                                        console.log('DELETE DO PRODUTO', err);
                                         res.json({status: 'ERRO', data: +err});
                                     }
                                     else{
@@ -109,31 +104,11 @@ router.post('/insere', function (req, res, next) {
 
 router.get('/lista', function (req, res, next) {
     req.getConnection(function (err, connection) {
-        connection.query('SELECT * FROM produtos ORDER BY quantidade DESC LIMIT 3', function (err, rows) {
+        connection.query('SELECT * FROM produtos, imagens_has_produtos WHERE produtos_id_produto = id_produto ORDER BY quantidade DESC LIMIT 3', function (err, rows) {
             if (err)
                 res.json({ status: 'ERRO', data: err });
             else {
-                var outPut = {
-                    produtos: rows
-                };
-
-                connection.query('SELECT imagens_linkImagem FROM imagens_has_produtos WHERE produtos_id_produto = ' + outPut.produtos[0].id_produto + ' OR produtos_id_produto = ' + outPut.produtos[1].id_produto + ' OR produtos_id_produto = ' + outPut.produtos[2].id_produto + ' ', function (err, rows) {
-
-                    if (err) {
-                        res.json({ status: 'ERRO', data: err });
-                    }
-                    else {
-                        var imagens = {
-                            imagem: rows
-                        };
-
-                        var final = {
-                            dadosProdutos: outPut,
-                            dadosImagem: imagens
-                        }
-                        res.json({ status: 'OK', data: final });
-                    }
-                });
+                res.json({status: 'OK', data: rows});
             }
         });
     });
@@ -156,6 +131,11 @@ router.get('/especifico', function (req, res, next) {
             }   
         });
     });
+});
+
+router.get('/listaCompra', function (req,res,next){
+    console.log("CHEGOU NA ROTA");
+    console.log(localStorage.vetorID);
 });
 
 
