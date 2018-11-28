@@ -17,15 +17,39 @@ $(document).ready(function(){
     });
 });
 
-function exibeProdutosCompra(produtos){
-    for (var i = 0; i < produtos.length; i++){
-        var novoProduto = document.createElement('div');
-        novoProduto.classList.add("col-md-4");
-        novoProduto.classList.add("col-12");
-        novoProduto.innerHTML = '<div class="card bg-white border-secondary" ><div class="card-body fundoCard"><img class="card-img-top" src= img/'+produtos[i].imagens_linkImagem+' alt="Imagem de capa do card"><h5 class="card-title text-dark"></h5><p class="card-text text-dark">Nome: '+produtos[i].nomeProduto+' <br> Marca: '+produtos[i].marca+' <br><b> Preço: R$ '+produtos[i].preco+'</b> </p><a class="btn btn-dark text-light">Excluir</a></div></div>'   
-        produtosCompra.appendChild(novoProduto);
+function exibeProdutosCompra(produtos) {
+
+    var arr = new Array();
+    var arr1 = new Array();
+    var aux, aux1;    
+    
+    arr = localStorage.vetorID.split(",");
+    arr1 = localStorage.vetorQTD.split(",");
+   
+    for(var i = 0; i < arr.length; i++){
+       for(var j = 0; j < arr.length; j++){
+           if(arr[i] < arr[j]){
+               aux = arr[j];
+               arr[j] = arr[i];
+               arr[i] = aux;
+               
+               aux = arr1[j];
+               arr1[j] = arr1[i];
+               arr1[i] = aux;
+           }
+       }
     }
-
-
-
+    var header_tabela = document.createElement('tr');
+    header_tabela.innerHTML = '<thead><tr><th>PRODUTO</th><th>NOME</th><th>ESCALA</th><th>QUANTIDADE</th><th>PREÇO</th></tr></thead>'
+    tabela.appendChild(header_tabela);
+    var valorTotal = 0;
+    for (var i = 0; i < produtos.length; i++) {
+        var linha = document.createElement('tr');     
+        linha.innerHTML = '<tr><td><img class="red " src="img/'+produtos[i].imagens_linkImagem+'"></td><td>'+produtos[i].nomeProduto+'</td><td>'+produtos[i].escala+'</td><td>'+arr1[i]+'</td><td>R$ '+(produtos[i].preco*arr1[i])+',00</td></tr>'        
+        tabela.appendChild(linha); 
+        valorTotal = valorTotal + produtos[i].preco*arr1[i];          
+    }
+    var footer_tabela = document.createElement('tr');
+    footer_tabela.innerHTML = '<tfoot><tr><th colspan="4">Total a pagar</th>R$ '+valorTotal+',00<th></th></tr></tfoot>'
+    tabela.appendChild(footer_tabela); 
 }

@@ -28,7 +28,6 @@ function listaProdutos(produtos){
             quantidade = quantidade + '<option value="'+ (j+1) +'">' + (j+1) + '</option>'
         }
         quantidade = quantidade + '</select>';
-        console.log(quantidade);
         var novoProduto = document.createElement('div');
         novoProduto.classList.add("col-md-4");
         novoProduto.classList.add("col-12");
@@ -41,9 +40,7 @@ function listaProdutos(produtos){
 function armazenaID(id, indice){
     if(window.localStorage) 
 	{      
-        console.log("indice",indice);
         var aux = document.getElementById("form"+ indice);
-        console.log("numero do form",aux.quantidades.value);
         if(localStorage.vetorID === undefined && localStorage.vetorQTD === undefined){       
             localStorage.vetorID = id.toString();
             localStorage.vetorQTD = aux.quantidades.value.toString();           
@@ -52,9 +49,7 @@ function armazenaID(id, indice){
             localStorage.vetorID = localStorage.vetorID + ',';
             localStorage.vetorID = localStorage.vetorID + id;
             localStorage.vetorQTD = localStorage.vetorQTD + ',';
-            localStorage.vetorQTD = localStorage.vetorQTD + aux.quantidades.value.toString();            
-            console.log("VETOR DE ID PRODUTOS",localStorage.vetorID);
-            console.log("VETOR DE QUANTIDADES", localStorage.vetorQTD);
+            localStorage.vetorQTD = localStorage.vetorQTD + aux.quantidades.value.toString();   
         }
     } 
 

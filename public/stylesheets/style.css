@@ -3,8 +3,8 @@
     }
 
 .clear{    
-    clear: both;    
-}
+    clear: both;    }
+
     
 a:link.links {
     color: white;
@@ -15,7 +15,9 @@ a:visited.links {
 a:hover.links {
     color: #FFC107;
 }
-
+.red{
+    max-width: 150px;
+}
 .teste{
     background-color: red;
 }
