@@ -1,6 +1,8 @@
 $(document).ready(function(){
+    var id = localStorage.vetorID;
+    console.log("console na pagina certa",id);
     $.ajax({
-        url: '/produto/listaCompra',
+        url: '/produto/listaCompra?ids=' +id ,
         dataType: 'json',
         error: function (dados) {
             alert('Erro: 333 ' + dados.data);

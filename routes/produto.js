@@ -134,8 +134,20 @@ router.get('/especifico', function (req, res, next) {
 });
 
 router.get('/listaCompra', function (req,res,next){
-    console.log("CHEGOU NA ROTA");
-    console.log(localStorage.vetorID);
+    var ids = req.query.ids;
+    console.log(ids);
+    req.getConnection(function (err, connection){
+        connection.query('SELECT * FROM produtos, imagens_has_produtos WHERE id_produto = produtos_id_produto AND id_produto IN  '+ "(" +' '+ ids +' '+ ")" +'', function (err, rows){
+            if(err){
+                console.log(err);
+                res.json({status: 'ERRO', data: err});
+            }
+            else{
+                res.json({status: 'OK', data: rows});
+                console.log("RESULTADO DA CONSULTA:::::", rows);
+            }
+        });
+    });    
 });
 
 
