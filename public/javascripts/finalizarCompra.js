@@ -1,18 +1,82 @@
+$(document).ready(function () {
+    $.ajax({
+        url: '/acesso/lista',
+        dataType: 'json',
+        error: function (dados) {
+            alert('Erro: ' + dados.data);
+        },
+        success: function (dados) {
+            if (dados.status === 'ERRO'){
+                alert('Erro: ' + dados.data);
+            } 
+            else{
+               
+                    exibeDados(dados.data);
+                
+            }
+                
+        }
+    });
+});
 
-function funcaoLimpa() {
+function exibeDados(cliente) {
 
-    var resultBotaoLimpar;
-    var opcao = confirm("Deseja Limpar a tela?");
-    if (opcao === true) {
-        document.FormularioCadastro.reset();
-    }
-    else {
-        //Nao Faz nada
-    }
+    var dadosCliente = '<b>Nome:</b> ' + cliente.dadosFinaisPessoais.dadosP[0].nome +
+        '<br><b>CPF</b>: ' + cliente.dadosFinaisPessoais.dadosP[0].CPF +
+        '<br><b>Email</b>: ' + cliente.dadosFinaisPessoais.dadosP[0].email +
+        '<br><b>Senha:</b> ' + cliente.dadosFinaisPessoais.dadosP[0].senha +
+        '<br><b>Rua:</b> ' + cliente.dadosFinaisEndereco.dadosE[0].rua +
+        '<br><b>Cidade:</b> ' + cliente.dadosFinaisEndereco.dadosE[0].cidade +
+        '<br><b>Estado:</b> ' + cliente.dadosFinaisEndereco.dadosE[0].estado +
+        '<br><b>CEP: </b>' + cliente.dadosFinaisEndereco.dadosE[0].cep +
+        '<br><br> <a class="btn btn-warning"  href="alterarDadosCompra.html?id=' + cliente.dadosFinaisPessoais.dadosP[0].idCliente + '"> Alterar </a>' +
+        '<a class="btn btn-warning ml-5" onClick = "atualizarEstoque();">Confirmar Dados</a>';
+        document.getElementById('result').innerHTML += dadosCliente;
 }
 
+function atualizarEstoque(){
+    var arr = new Array();
+    var arr1 = new Array();
+    var aux;    
+    
+    arr = localStorage.vetorID.split(",");
+    arr1 = localStorage.vetorQTD.split(",");
+   
+    for(var i = 0; i < arr.length; i++){
+       for(var j = 0; j < arr.length; j++){
+           if(arr[i] < arr[j]){
+               aux = arr[j];
+               arr[j] = arr[i];
+               arr[i] = aux;
+               
+               aux = arr1[j];
+               arr1[j] = arr1[i];
+               arr1[i] = aux;
+           }
+       }
+    }
+    var input = {
+        id: arr.toString(),
+        qtd: arr1.toString()
+    };
+    console.log(input.id, input.qtd);
+    $.ajax({
+        url: '/produto/atualizaEstoque',
+        type: 'post',
+        data: input,
+        error: function (dados) {
+            alert('Erro: 1' + dados.data);
+        },
+        success: function (dados) {
+            
+                alert(dados.data);
+                //window.location.href = '/index.html';
+            
+        }
+    });
+}
 
-function validaDadosCadastro(){
+function validaDadosAlteracao(){
  
     var retornoErroNome,retornoErroCpf, retornoErroEmail,retornoSenha, retornoErroEndereco,retornoErroCep,retornoErroCidade, retornoErroEstado;
     
@@ -156,7 +220,7 @@ function validaDadosCadastro(){
         success: function (dados) {
             
                 alert(dados.data);
-                window.location.href = '/index.html';
+                window.location.href = 'finalizarCompra.html';
             
         }
     });
@@ -168,85 +232,3 @@ function validaDadosCadastro(){
 
 
 }
-
-
-
-
-
-function exibeDados(cliente) {
-
-        var dadosCliente = '<b>Nome:</b> ' + cliente.dadosFinaisPessoais.dadosP[0].nome +
-            '<br><b>CPF</b>: ' + cliente.dadosFinaisPessoais.dadosP[0].CPF +
-            '<br><b>Email</b>: ' + cliente.dadosFinaisPessoais.dadosP[0].email +
-            '<br><b>Senha:</b> ' + cliente.dadosFinaisPessoais.dadosP[0].senha +
-            '<br><b>Rua:</b> ' + cliente.dadosFinaisEndereco.dadosE[0].rua +
-            '<br><b>Cidade:</b> ' + cliente.dadosFinaisEndereco.dadosE[0].cidade +
-            '<br><b>Estado:</b> ' + cliente.dadosFinaisEndereco.dadosE[0].estado +
-            '<br><b>CEP: </b>' + cliente.dadosFinaisEndereco.dadosE[0].cep +
-            '<br><br> <a class="btn btn-warning"  href="cadastrar.html?id=' + cliente.dadosFinaisPessoais.dadosP[0].idCliente + '"> Alterar </a>' ;
-            document.getElementById('result').innerHTML += dadosCliente;
-
-    
-}
-
-$(document).ready(function () { alteraCliente(); });
-
-
-
-function alteraCliente() {
-    var param = new URLSearchParams(window.location.search);
-    var id = param.get('id')
-    if(param.has('id')){
-         $.ajax({
-            url: '/acesso/lista?id=' + id,
-            dataType: 'json',
-            error: function (dados) {
-                alert('Erro: ' + dados.data);
-            },
-            success: function (dados) {
-                if (dados.status === 'ERRO')
-                    alert('Erro: ' + dados.data);
-                else{
-                    var cliente = dados.data;
-                    var form = document.FormularioCadastro;
-
-
-
-                    form.inputName.value = cliente.dadosFinaisPessoais.dadosP[0].nome;
-                    form.inputCPF.value = cliente.dadosFinaisPessoais.dadosP[0].CPF;
-                    form.inputEmail4.value = cliente.dadosFinaisPessoais.dadosP[0].email;
-                    form.inputPassword4.value = cliente.dadosFinaisPessoais.dadosP[0].senha;
-                    form.inputAddress.value = cliente.dadosFinaisEndereco.dadosE[0].rua;
-                    form.inputCEP.value = cliente.dadosFinaisEndereco.dadosE[0].cep;
-                    form.inputCity.value = cliente.dadosFinaisEndereco.dadosE[0].cidade;
-                    form.inputEstado.value = cliente.dadosFinaisEndereco.dadosE[0].estado;
-
-
-
-
-                }
-                
-            }
-        });
-    }
-}
-$(document).ready(function () {
-    $.ajax({
-        url: '/acesso/lista',
-        dataType: 'json',
-        error: function (dados) {
-            alert('Erro: ' + dados.data);
-        },
-        success: function (dados) {
-            if (dados.status === 'ERRO'){
-                alert('Erro: ' + dados.data);
-            } 
-            else{
-               
-                    exibeDados(dados.data);
-                
-            }
-                
-        }
-    });
-});

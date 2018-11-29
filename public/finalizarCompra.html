@@ -18,9 +18,9 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-
+        
+    <script type="text/javascript" src="javascripts/finalizarCompra.js"></script>
     <script type="text/javascript" src="javascripts/logado.js"></script>
-    <script type="text/javascript" src="javascripts/produtosCompra.js"></script>
     <script type="text/javascript" src="javascripts/bootstrap.js"></script>
 
 
@@ -43,17 +43,15 @@
 
 <body>
 
-    <div class="container-fluid text-center " id="welcome">
+    <div class="container-fluid d-block text-center" id="welcome">
 
-
-
-
+        
 
     </div>
 
 
 
-    <div class="container-fluid sticky-top divBarraLogo ">
+    <div class="container-fluid sticky-top divBarraLogo d-block">
 
 
 
@@ -74,8 +72,8 @@
             <div class="img-fluid rounded float-right ">
 
                 <div class="dropdown float-left pt-4" id="botaoConta">
-                    <button class="dropdown-toggle btn btn-warning float-left d-none d-sm-block" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="dropdown-toggle btn btn-warning float-left d-none d-sm-block" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
 
                         <div class="float-left">
 
@@ -114,6 +112,12 @@
                     </div>
 
                 </div>
+                <!-- botao do admin de chamar exclusao de produtos-->
+                <div class=" float-left pt-4" id="botaoExcluiProd">
+
+
+                </div>
+                <!-- botao do admin de chamar adição de produtos-->
                 <div class=" float-left pt-4" id="botaoAdicionaProd">
 
 
@@ -126,9 +130,8 @@
                 <div class="clear">
 
                 </div>
-
-
-
+                
+                
                 <div class="float-left mr-4 d-none d-sm-block" id="linkLogin">
 
 
@@ -140,7 +143,6 @@
 
 
                 </div>
-
 
 
             </div>
@@ -169,8 +171,8 @@
 
         <a class="navbar-brand" href="index.html">Home</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
-            aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
+            aria-expanded="false" aria-label="Alterna navegação">
 
             <span class="navbar-toggler-icon"></span>
 
@@ -184,61 +186,52 @@
 
                 <li class="nav-item dropdown">
 
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="Moto" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Motos
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="Moto" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">Motos
                         <span class="sr-only">(página atual)</span>
                     </a>
                     <div class="dropdown-menu bg-secondary " aria-labelledby="navbarDropdown" id="teste">
 
-                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Moto&marca=HarleyDavidson"
-                            id="HarleyDavidson" onClick="listaProdutosDesejados();">Harley Davidson</a>
-
-                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Moto&marca=Honda" id="Honda"
-                            onClick="listaProdutosDesejados();">Honda</a>
-
-                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Moto&marca=Kawasaki"
-                            id="Kawasaki" onClick="listaProdutosDesejados();">Kawasaki</a>
-
-                    </div>
-
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Moto&marca=HarleyDavidson" id="HarleyDavidson" onClick="listaProdutosDesejados();" >Harley Davidson</a>
+    
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Moto&marca=Honda" id="Honda"  onClick="listaProdutosDesejados();">Honda</a>
+    
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Moto&marca=Kawasaki" id="Kawasaki"  onClick="listaProdutosDesejados();">Kawasaki</a>
+    
+                        </div>
+    
 
                 </li>
 
                 <li class="nav-item dropdown">
 
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="Moto" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Caminhões</a>
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="Moto" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">Caminhões</a>
                     <div class="dropdown-menu bg-secondary " aria-labelledby="navbarDropdown" id="teste">
 
-                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Caminhao&marca=Scania"
-                            id="Scania" onClick="listaProdutosDesejados();">Scania</a>
-
-                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Caminhao&marca=Volvo"
-                            id="Volvo" onClick="listaProdutosDesejados();">Volvo</a>
-
-                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Caminhao&marca=MercedesBenz"
-                            id="MercedesBenz" onClick="listaProdutosDesejados();">Mercedes Benz</a>
-
-                    </div>
-
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Caminhao&marca=Scania" id="Scania" onClick="listaProdutosDesejados();" >Scania</a>
+    
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Caminhao&marca=Volvo" id="Volvo"  onClick="listaProdutosDesejados();">Volvo</a>
+    
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Caminhao&marca=MercedesBenz" id="MercedesBenz"  onClick="listaProdutosDesejados();">Mercedes Benz</a>
+    
+                        </div>
+    
 
                 </li>
 
                 <li class="nav-item dropdown ">
 
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="Carro" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"> Carros</a>
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="Carro" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"> Carros</a>
 
                     <div class="dropdown-menu bg-secondary " aria-labelledby="navbarDropdown" id="teste">
 
-                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Carro&marca=Nacionais"
-                            id="Nacionais" onClick="listaProdutosDesejados();">Nacionais</a>
+                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Carro&marca=Nacionais" id="Nacionais" onClick="listaProdutosDesejados();" >Nacionais</a>
 
-                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Carro&marca=Welly" id="Internacionais"
-                            onClick="listaProdutosDesejados();">Welly</a>
+                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Carro&marca=Welly" id="Internacionais"  onClick="listaProdutosDesejados();">Welly</a>
 
-                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Carro&marca=HotWheels"
-                            id="Hotwheels" onClick="listaProdutosDesejados();">Hotwheels</a>
+                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Carro&marca=HotWheels" id="Hotwheels"  onClick="listaProdutosDesejados();">Hotwheels</a>
 
                     </div>
 
@@ -270,25 +263,11 @@
 
     </nav>
 
+    <div class= "rounded margemCadastro mx-auto w-50 color text-center margemExibe"id="result"></div>
 
-    <!-- Menu Lateral-->
-
-    <br><br>
-    <div class="container-fluid">
-        <table id="tabela" class="text-center table table-hover ">
-
-        </table>
-        <a class="btn btn-warning float-right mr-5" href="finalizarCompra.html">Finalizar Compra</a>
-    </div>
-    <br>
-    <br>
-
-    <!-- Fim Menu Lateral-->
-
-    <!-- JavaScript (Opcional) -->
-
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
 
 </body>
+
+
 
 </html>

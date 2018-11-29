@@ -21,7 +21,7 @@ function exibeProdutosCompra(produtos) {
 
     var arr = new Array();
     var arr1 = new Array();
-    var aux, aux1;    
+    var aux;    
     
     arr = localStorage.vetorID.split(",");
     arr1 = localStorage.vetorQTD.split(",");

@@ -15,36 +15,11 @@
 
 
     <!-- Bootstrap CSS -->
-
+    <script type="text/javascript" src="javascripts/logado.js"></script>
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
 
 
-
-    <script>
-    
-        $(document).ready(function () {
-                $.ajax({
-                    url: '/acesso/lista',
-                    dataType: 'json',
-                    error: function (dados) {
-                        alert('Erro: ' + dados.data);
-                    },
-                    success: function (dados) {
-                        if (dados.status === 'ERRO'){
-                            alert('Erro: ' + dados.data);
-                        } 
-                        else{
-                           
-                                exibeDados(dados.data);
-                            
-                        }
-                            
-                    }
-                });
-            });
-        
-        </script>
-    
+  
     
     </head>
     

@@ -135,7 +135,6 @@ router.get('/especifico', function (req, res, next) {
 
 router.get('/listaCompra', function (req,res,next){
     var ids = req.query.ids;
-    console.log(ids);
     req.getConnection(function (err, connection){
         connection.query('SELECT * FROM produtos, imagens_has_produtos WHERE id_produto = produtos_id_produto AND id_produto IN  '+ "(" +' '+ ids +' '+ ")" +'', function (err, rows){
             if(err){
@@ -148,7 +147,47 @@ router.get('/listaCompra', function (req,res,next){
     });    
 });
 
+router.post('/atualizaEstoque', function(req, res, next){
+    var input = req.body;
+    var inputDados = {
+        id_produto: input.id,
+        quantidade: input.qtd
+    };
+   
 
+    req.getConnection(function (err, connection) {
+        connection.query('SELECT quantidade FROM produtos WHERE id_produto IN ' + "(" + ' ' + inputDados.id_produto + ' ' + ")" + '', function (err, rows) {
+            if (err) {
+                res.json({ status: 'ERRO', data: err });
+            }
+            else {
+                var ok = 0;
+                var arrayQTD = new Array();
+                var arrayID = new Array();
+                arrayID = inputDados.id_produto.split(",");
+                arrayQTD = inputDados.quantidade.split(",");
+                for (var i = 0; i < arrayQTD.length; i++) {
+                    arrayQTD[i] = rows[i].quantidade - arrayQTD[i];
+                }
+                console.log(arrayQTD, arrayID);
+                for (var i = 0; i < arrayQTD.length; i++) {
+                    console.log(arrayQTD[i], arrayID[i]);
+                    connection.query('UPDATE produtos SET quantidade = ? WHERE id_produto = ?', [ arrayQTD[i], arrayID[i]], function (err, rows) {
+                        if (err) {
+                            res.json({ status: 'ERRO', data: err });
+                        }
+                        else {
+                            ok++;
+                            if(ok === arrayQTD.length){
+                                res.json({status:'OK', data: "CERTO"});
+                            }
+                        }
+                    });
+                }
 
+            }
+        })
+    })
+})
 
 module.exports = router;
