@@ -16,6 +16,8 @@
 
     <script type="text/javascript" src="javascripts/exclusao.js"></script>
     <script type="text/javascript" src="javascripts/bootstrap.js"></script>
+    <script type="text/javascript" src="javascripts/logado.js"></script>
+
 
 
 
@@ -37,11 +39,111 @@
         <a href="index.html">
             <img src="img/logoHome2.png" width="285px">
         </a>
+        
     </div>
 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <a class="navbar-brand" href="index.html">Home</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
+            aria-expanded="false" aria-label="Alterna navegação">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="Moto" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">Motos
+                        <span class="sr-only">(página atual)</span>
+                    </a>
+                    <div class="dropdown-menu bg-secondary " aria-labelledby="navbarDropdown" id="teste">
+
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Moto&marca=HarleyDavidson" id="HarleyDavidson" onClick="listaProdutosDesejados();" >Harley Davidson</a>
+    
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Moto&marca=Honda" id="Honda"  onClick="listaProdutosDesejados();">Honda</a>
+    
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Moto&marca=Kawasaki" id="Kawasaki"  onClick="listaProdutosDesejados();">Kawasaki</a>
+    
+                        </div>
+    
+
+                </li>
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="Moto" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">Caminhões</a>
+                    <div class="dropdown-menu bg-secondary " aria-labelledby="navbarDropdown" id="teste">
+
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Caminhao&marca=Scania" id="Scania" onClick="listaProdutosDesejados();" >Scania</a>
+    
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Caminhao&marca=Volvo" id="Volvo"  onClick="listaProdutosDesejados();">Volvo</a>
+    
+                            <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Caminhao&marca=MercedesBenz" id="MercedesBenz"  onClick="listaProdutosDesejados();">Mercedes Benz</a>
+    
+                        </div>
+    
+
+                </li>
+
+                <li class="nav-item dropdown ">
+
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="Carro" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"> Carros</a>
+
+                    <div class="dropdown-menu bg-secondary " aria-labelledby="navbarDropdown" id="teste">
+
+                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Carro&marca=Nacionais" id="Nacionais" onClick="listaProdutosDesejados();" >Nacionais</a>
+
+                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Carro&marca=Welly" id="Internacionais"  onClick="listaProdutosDesejados();">Welly</a>
+
+                        <a class="dropdown-item text-white bg-dark" href="produtos.html?categoria=Carro&marca=HotWheels" id="Hotwheels"  onClick="listaProdutosDesejados();">Hotwheels</a>
+
+                    </div>
+
+                </li>
+
+                <li class="nav-item d-block d-sm-none" id="bottonNavBar">
+
+
+
+                </li>
+                <li class="nav-item d-block d-sm-none" id="bottonNavBarMinhaConta">
+
+                </li>
+                <li class="nav-item d-block d-sm-none" id="bottonNavBarMinhaCompra">
+
+                </li>
+                <li class = "nav-item d-block d-sm-none" id="bottonNavBarMeusPedidos">
+             
+                </li>
+
+            </ul>
+
+            <form name = "pesquisar" class="form-inline my-2 my-lg-0">
+
+                <input name = "inputPesquisar"class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+
+                <button type="button" class="btn btn-outline-success my-2 my-sm-0 text-warning border-warning" onClick="pesquisarAdmin();">Pesquisar</button>
+
+            </form>
+
+        </div>
+
+    </nav>
     <br><br>
+    
     <div class="container">
-        <div class="row" id="produtoExlusao">
+        <div class="row" id="produtoExclusao">
 
         </div>
     </div>

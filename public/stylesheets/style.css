@@ -21,6 +21,9 @@ a:hover.links {
 .teste{
     background-color: red;
 }
+.tamanhoCard{
+    height: 100%;
+}
     
     
     /* selected link */

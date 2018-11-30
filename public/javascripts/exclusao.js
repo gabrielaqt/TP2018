@@ -33,7 +33,7 @@ function exibeProdutos(produtos) {
             novoProduto.classList.add("col-md-3");
             novoProduto.classList.add("col-12");
             novoProduto.innerHTML = '<div class="card bg-white border-secondary" ><div class="card-body fundoCard"><img class="card-img-top"><h5 class="card-title text-dark"></h5><p class="card-text text-dark">Nome: '+produto.nomeProduto+' <br> Marca: '+produto.marca+' <br> Preço: R$ '+produto.preco+' <br> Escala: '+produto.escala+' </p><a href="#" class="btn btn-danger" onClick = "deletaProduto(' + produto.id_produto + ');">Excluir<\a></div></div>'   
-            produtoExlusao.appendChild(novoProduto);
+            produtoExclusao.appendChild(novoProduto);
        
     }
 }

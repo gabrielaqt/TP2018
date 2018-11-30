@@ -19,6 +19,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
         <script type="text/javascript" src="javascripts/produto.js"></script>
+        <script type="text/javascript" src="javascripts/maiorQuantidade.js"></script>
     <script type="text/javascript" src="javascripts/logado.js"></script>
     <script type="text/javascript" src="javascripts/bootstrap.js"></script>
 
@@ -247,14 +248,17 @@
                 <li class="nav-item d-block d-sm-none" id="bottonNavBarMinhaCompra">
 
                 </li>
+                <li class = "nav-item d-block d-sm-none" id="bottonNavBarMeusPedidos">
+             
+                </li>
 
             </ul>
 
-            <form class="form-inline my-2 my-lg-0">
+            <form name = "pesquisar" class="form-inline my-2 my-lg-0">
 
-                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                <input name = "inputPesquisar"class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
 
-                <button class="btn btn-outline-success my-2 my-sm-0 text-warning border-warning" type="submit">Pesquisar</button>
+                <button type="button" class="btn btn-outline-success my-2 my-sm-0 text-warning border-warning" onClick="pesquisar2();">Pesquisar</button>
 
             </form>
 
@@ -300,10 +304,7 @@
     <!-- PRODUTOS PARA COMPRAR-->
     <br>
     <div class="container">
-        <div class="row " id="produtosHome">
-        
-
-        
+        <div class="row " id="produtosHome">        
         </div>
     </div>
     <br>

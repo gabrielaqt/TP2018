@@ -19,6 +19,24 @@ $(document).ready(function () {
             }
         });
     }
+    else if (urlParams.has('pesquisa')) {
+        console.log("entrou na pesquisa");
+        $.ajax({
+            url: '/produto/pesquisarProdutos?pesquisa=' + urlParams.get('pesquisa'),
+            error: function (dados) {
+                alert('Erro: 11' + dados.data);
+            },
+            success: function (dados) {
+                if (dados.status === 'ERRO') {
+                    alert('Erro: 33' + dados.data);
+                }
+                else {
+                    listaProdutos(dados.data);
+                }
+
+            }
+        });
+    }
 });
 function listaProdutos(produtos) {
 

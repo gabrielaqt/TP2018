@@ -11,6 +11,7 @@ $(document).ready(function () {
             if (dados.data.statusCliente === 'LogadoCliente' || dados.data.statusAdmin === 'LogadoAdmin') {
                 var botaoNavBar = document.getElementById("bottonNavBar");
                 var botaoConta = document.getElementById("bottonNavBarMinhaConta");
+                var botaoPedidos = document.getElementById("bottonNavBarMeusPedidos");
                 var botaoCarrinho = document.getElementById("bottonNavBarMinhaCompra");
                 var linkLogin = document.getElementById("linkLogin");
                 var nomeLogado = document.getElementById("welcome");
@@ -18,14 +19,15 @@ $(document).ready(function () {
                 linkLogin.innerHTML = '<a class="links text-warning" href="#" onClick="deslogado();">Logout</a>'
                 botaoNavBar.innerHTML = '<a class="nav-link text-white" onClick="deslogado();" href="#" >Logout </a>'
                 botaoConta.innerHTML = '<a class="nav-link text-white" href="dadosCliente.html" >Minha Conta </a>'
-                botaoCarrinho.innerHTML = '<a class="nav-link text-white" href="carrinhoCompra.html onClick = "listaCarrinhoCompra();" >Minha Compra </a>'
+                botaoPedidos.innerHTML = '<a class="nav-link text-white" href="historico.html" >M </a>'
+                botaoCarrinho.innerHTML = '<a class="nav-link text-white" href="carrinhoCompra.html" onClick = "listaCarrinhoCompra();" >Minha Compra </a>'
                 //CLIENTE --> insere opções no Dropdown
                 if(dados.data.statusCliente === 'LogadoCliente' ){
                 var minhaContaDrop = document.getElementById("MinhaContaDropdown");
                 var minhaCompraDrop = document.getElementById("MinhaCompraDropdown");
                 
-                minhaContaDrop.innerHTML = '<a class="dropdown-item" href="dadosCliente.html">Meus Dados</a>'
-                minhaCompraDrop.innerHTML = '<a class="dropdown-item" href="carrinhoCompra.html">Carrinho Compra</a>'
+                minhaContaDrop.innerHTML = '<a class="dropdown-item"   href="dadosCliente.html" >Meus Dados</a><a class="dropdown-item" href="historico.html" >Meus Pedidos</a>'
+                minhaCompraDrop.innerHTML = '<a class="dropdown-item" href="carrinhoCompra.html " onClick = "listaCarrinhoCompra();">Carrinho Compra</a>'
                 }
                 //ADMIN -> retira botões cliente e adiciona outros
                 else{
@@ -55,39 +57,7 @@ $(document).ready(function () {
         }
     });
 });
-$(document).ready(function(){
-    $.ajax({
-        url: '/produto/lista',
-        dataType: 'json',
-        error: function (dados) {
-            alert('Erro: 333 ' + dados.data);
-        },
-        success: function (dados) {
-            if (dados.status === 'ERRO')
-                alert('Erro 111: ' + dados.data);
-            else{
-                exibeProdutos(dados.data);
-            }
-        }
-    });
-});
 
-function exibeProdutos(produtos){
-    for (var i = 0; i < 3; i++){
-        var quantidade =  '<select name="quantidades">'
-        for(var k =0 ;k<produtos[i].quantidade;k++){
-            quantidade = quantidade + '<option value="' + (k + 1) + '">' + (k + 1) + '</option>'
-        }
-
-        quantidade = quantidade + '</select>';
-        var novoProduto = document.createElement('div');
-        novoProduto.classList.add("col-md-4");
-        novoProduto.classList.add("col-12");
-        novoProduto.innerHTML = '<div class="card bg-white border-secondary mb-5" ><div class="card-body fundoCard"><img class="card-img-top" src= img/' + produtos[i].imagens_linkImagem + ' alt="Imagem de capa do card"><h5 class="card-title text-dark"></h5><p class="card-text text-dark">Nome: ' + produtos[i].nomeProduto + ' <br> Marca: ' + produtos[i].marca + ' <br> Preço: R$ ' + produtos[i].preco + ' <br> Escala: ' + produtos[i].escala + ' <br> <form id="form' + i + '"> ' + quantidade + '</form></p><a onClick = "armazenaID (' + produtos[i].id_produto + ', ' + i + ')" class="btn btn-dark text-light">Comprar</a></div></div>'
-        produtosHome.appendChild(novoProduto);
-    }
-
-}
 
 
 function deslogado(){
@@ -111,3 +81,36 @@ function deslogado(){
     });
 }
 
+function pesquisar2() {
+    var valorPesquisa = document.pesquisar.inputPesquisar.value;
+    console.log(valorPesquisa);
+   window.location.href = '/produtos.html?pesquisa='+ valorPesquisa;
+
+
+}
+function pesquisarAdmin() {
+    var valorPesquisa = document.pesquisar.inputPesquisar.value;
+    console.log(valorPesquisa);
+
+   $.ajax({
+    url: '/produto/pesquisarProdutos?pesquisa='+valorPesquisa,
+    dataType: 'json',
+    error: function (dados)
+    {
+        alert('Erro: 12 ' + dados.data);
+    },
+    success: function (dados){
+        if(dados.status === 'ERRO')
+        {
+            alert('Impossível fazer logout');
+        }
+        else{
+            var idProduto = document.getElementById("produtoExclusao");
+            idProduto.innerHTML = "";
+            exibeProdutos(dados.data);
+        }
+        
+    }
+});
+
+}
