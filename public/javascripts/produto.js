@@ -1,10 +1,12 @@
 $(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
-    var cat = urlParams.get('categoria');
-    var mar = urlParams.get('marca');
+    var paginas = urlParams.get('paginas');
+if( !urlParams.has('paginas') ){
+    paginas = 1;
+}
     if (urlParams.has('categoria') && urlParams.has('marca')) {
         $.ajax({
-            url: '/produto/especifico?categoria=' + urlParams.get('categoria') + '&marca=' + urlParams.get('marca'),
+            url: '/produto/especifico?categoria=' + urlParams.get('categoria') + '&marca=' + urlParams.get('marca') + '&paginas=' + paginas,
             error: function (dados) {
                 alert('Erro: 11' + dados.data);
             },
@@ -38,6 +40,7 @@ $(document).ready(function () {
         });
     }
 });
+
 function listaProdutos(produtos) {
 
     for (var i = 0; i < produtos.length; i++) {
@@ -76,3 +79,35 @@ function armazenaID(id, indice) {
         alert("Seu browser não suporta web storage...");
     }
 }
+
+$(document).ready(function () {
+    var urlParams = new URLSearchParams(window.location.search);
+    var cat = urlParams.get('categoria');
+    var mar = urlParams.get('marca');
+    if (urlParams.has('categoria') && urlParams.has('marca')) {
+        $.ajax({
+            url: '/produto/contador?categoria=' + urlParams.get('categoria') + '&marca=' + urlParams.get('marca'),
+            error: function (dados) {
+                alert('Erro: 11' + dados.data);
+            },
+            success: function (dados) {
+                if (dados.status === 'ERRO') {
+                    alert('Erro: 33' + dados.data);
+                }
+                else {
+                    console.log(dados.data[0].qtd);
+                   var numPag = Math.ceil(parseInt(dados.data[0].qtd) / 6);
+                   console.log(numPag);
+                   var retornoPag = document.getElementById("paginas");
+                   var conteudo = '<ul class="pagination justify-content-center">'
+                   for(var i =0; i<numPag;i++){
+                    conteudo = conteudo +  '<li class="page-item"><a class="page-link" href="?categoria=' + urlParams.get('categoria') + '&marca=' + urlParams.get('marca') + '&paginas='+ (i+1) +'">'+ (i+1) +'</a></li>'
+                   }
+                   conteudo = conteudo + ' </ul>'
+                   retornoPag.innerHTML = conteudo;
+                }
+
+            }
+        });
+    }
+});

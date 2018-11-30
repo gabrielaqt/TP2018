@@ -120,12 +120,15 @@ router.get('/lista', function (req, res, next) {
 router.get('/especifico', function (req, res, next) {
     var cat = req.query.categoria;
     var marca1 = req.query.marca;
+    var pagina = req.query.paginas;
     req.getConnection(function (err, connection) {
-        connection.query('SELECT * FROM produtos, imagens_has_produtos WHERE categoria = ? AND marca = ? AND id_produto = produtos_id_produto', [cat, marca1], function (err, rows) {
+        connection.query('SELECT * FROM produtos, imagens_has_produtos WHERE categoria = ? AND marca = ? AND id_produto = produtos_id_produto LIMIT 6 OFFSET '+ ((pagina-1)*6) , [cat, marca1], function (err, rows) {
             if (err) {
+                console.log(err);
                 res.json({ status: 'ERRO', data: err });
             }
             else {
+                console.log(rows);
                 res.json({ status: 'OK', data: rows });
             }
         });
@@ -323,4 +326,21 @@ router.get('/historico', function(req,res,next){
     });
 });
 
+router.get('/contador', function(req,res,next){
+    var marca = req.query.marca;
+    var categoria = req.query.categoria;
+    req.getConnection(function (err, connection) {
+        connection.query('SELECT COUNT(id_produto) AS qtd FROM produtos WHERE categoria = ? AND marca = ?', [categoria, marca],function(err,rows){
+            
+                if (err) {
+                    console.log(err);
+                    res.json({ status: "ERRO", data: + err });
+                }
+                else {
+                    console.log(rows);
+                    res.json({ status: "ok", data: rows });
+                }
+        });
+    });
+});
 module.exports = router;
