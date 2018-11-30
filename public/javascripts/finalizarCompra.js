@@ -70,6 +70,7 @@ function atualizarEstoque(){
         success: function (dados) {
             
                 alert(dados.data);
+                
                 //window.location.href = '/index.html';
             
         }
