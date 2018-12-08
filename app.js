@@ -45,12 +45,12 @@ app.use(
   connection(mysql, {
     host: 'sql10.freemysqlhosting.net'
     , //servidor do banco mysql, se for local: localhost,
-    user: 'sql10263390'
+    user: 'sql10268150'
     , //usuario com permissao de conexao a base de dados
-    password: 'xgBhMK18fp'
+    password: 'UEerzxYFgw'
     , //senha de acesso ao banco
     port: 3306, //porta do mysql, normalmente 3306
-    database: 'sql10263390' //nome da base de dados (esquema)
+    database: 'sql10268150' //nome da base de dados (esquema)
   }, 'pool')
 );
 /*------------------------------------------
